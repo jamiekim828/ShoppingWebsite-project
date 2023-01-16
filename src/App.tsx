@@ -1,19 +1,19 @@
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
-import Cart from './pages/Cart';
-import Home from './pages/Home';
-import Product from './pages/Product';
-import Wish from './pages/Wish';
+import CartPage from './pages/CartPage';
+import HomePage from './pages/HomePage';
+import ProductPage from './pages/ProductPage';
+import WishPage from './pages/WishPage';
 
 function App() {
   return (
     <div className='App'>
       <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route path='/products' element={<Product />}></Route>
-        <Route path='/wish' element={<Wish />}></Route>
-        <Route path='/cart' element={<Cart />}></Route>
+        <Route path='/' element={<HomePage />}></Route>
+        <Route path='/products' element={<ProductPage />}></Route>
+        <Route path='/wish' element={<WishPage />}></Route>
+        <Route path='/cart' element={<CartPage />}></Route>
       </Routes>
     </div>
   );
