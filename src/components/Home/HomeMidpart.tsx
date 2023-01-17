@@ -25,9 +25,10 @@ const Div = styled('div')(({ theme }) => ({
 // type
 type PropType = {
   productsList: ProductType[];
+  addFavorite: Function;
 };
 
-export default function HomeMidpart({ productsList }: PropType) {
+export default function HomeMidpart({ productsList, addFavorite }: PropType) {
   const fiveStars = productsList.filter((item) => item.rating.rate > 3);
 
   const [index, setIndex] = useState(0);
@@ -137,6 +138,7 @@ export default function HomeMidpart({ productsList }: PropType) {
                         fontSize: 'xlarge',
                         cursor: 'pointer',
                       }}
+                      onClick={() => addFavorite(item)}
                     />
                   </CardActions>
                 </Card>

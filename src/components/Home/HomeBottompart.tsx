@@ -25,9 +25,13 @@ const Div = styled('div')(({ theme }) => ({
 // type
 type PropType = {
   productsList: ProductType[];
+  addFavorite: Function;
 };
 
-export default function HomeBottompart({ productsList }: PropType) {
+export default function HomeBottompart({
+  productsList,
+  addFavorite,
+}: PropType) {
   // MUI
   const [open, setOpen] = useState(false);
 
@@ -90,6 +94,7 @@ export default function HomeBottompart({ productsList }: PropType) {
                   />
                   <FavoriteBorderIcon
                     sx={{ zIndex: 2, marginLeft: '5px', cursor: 'pointer' }}
+                    onClick={() => addFavorite(item)}
                   />
                 </Card>
                 <button className='quick-shop'>QUICK SHOP</button>
