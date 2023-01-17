@@ -103,20 +103,27 @@ export default function HomeMidpart({ productsList }: PropType) {
           >
             {fiveStars.slice(index, index + 4).map((item) => (
               <Grid xs={3} key={item.id}>
-                <Card sx={{ maxWidth: 345, height: 330 }}>
-                  <CardActionArea>
+                <Card sx={{ maxWidth: 345, height: 340 }}>
+                  <CardActionArea
+                    sx={{ display: 'flex', flexDirection: 'column' }}
+                  >
                     <CardMedia
+                      sx={{ objectFit: 'contain' }}
                       component='img'
-                      height='200'
+                      height='240'
                       image={`${item.image}`}
-                      alt='green iguana'
+                      alt={item.title}
                     />
                     <CardContent>
                       <Typography
                         gutterBottom
                         variant='h6'
                         component='div'
-                        sx={{ height: '43px', fontSize: '16px' }}
+                        sx={{
+                          height: '30px',
+                          fontSize: '16px',
+                          marginBottom: '0px',
+                        }}
                       >
                         {item.title.slice(0, 19)}
                       </Typography>
