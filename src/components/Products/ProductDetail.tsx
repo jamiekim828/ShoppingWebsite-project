@@ -9,7 +9,6 @@ import {
   Tooltip,
 } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import { red } from '@mui/material/colors';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
@@ -21,7 +20,7 @@ type PropType = {
   productDetail: ProductType;
 };
 
-export default function CountriesDetails({ productDetail }: PropType) {
+export default function ProductDetail({ productDetail }: PropType) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -60,7 +59,7 @@ export default function CountriesDetails({ productDetail }: PropType) {
       </CardContent>
       <CardActions disableSpacing>
         <Tooltip title='Back'>
-          <RouterLink to='/countries'>
+          <RouterLink to='/products'>
             <IconButton>
               <ArrowBackIosIcon />
             </IconButton>
