@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { ProductType } from '../../types/type';
 
 type InitialStateType = {
@@ -51,3 +52,4 @@ const productSlice = createSlice({
 
 export const actions = productSlice.actions;
 export default productSlice.reducer;
+
