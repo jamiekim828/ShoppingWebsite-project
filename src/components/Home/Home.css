@@ -94,3 +94,11 @@ img:hover {
   color: white;
   font-weight: 500;
 }
+
+.quick-shop {
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 0%;
+  height: 40px;
+  width: auto;
+}

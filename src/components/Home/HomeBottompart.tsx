@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
+
 // file
 import { ProductType } from '../../types/type';
 
@@ -30,18 +31,36 @@ export default function HomeBottompart({ productsList }: PropType) {
           marginTop: '3rem',
         }}
       >
-        <Div sx={{ fontSize: '22px', fontWeight: '500', fontStyle: 'italic' }}>
+        <Div
+          sx={{
+            fontSize: '22px',
+            fontWeight: '500',
+            fontStyle: 'italic',
+          }}
+        >
           {'You might also like ...'}
-          {women.map((item) => (
-            <Card sx={{ maxWidth: 160, height: 210 }} key={item.id}>
-              <CardMedia
-                component='img'
-                height='200'
-                image={`${item.image}`}
-                alt='green iguana'
-              />
-            </Card>
-          ))}
+          <div style={{ display: 'flex' }}>
+            {women.map((item) => (
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  overflow: 'hidden',
+                  width: '30%',
+                }}
+              >
+                <Card sx={{ height: 300 }} key={item.id}>
+                  <CardMedia
+                    component='img'
+                    height='auto'
+                    image={`${item.image}`}
+                    alt='green iguana'
+                  />
+                </Card>
+                <button className='quick-shop'>QUICK SHOP</button>
+              </div>
+            ))}
+          </div>
         </Div>
       </Box>
     </div>
