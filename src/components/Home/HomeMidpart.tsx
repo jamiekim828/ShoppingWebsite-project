@@ -94,6 +94,8 @@ export default function HomeMidpart({ productsList }: PropType) {
             />
           }
           fullHeightHover={false}
+          navButtonsAlwaysVisible={true}
+          cycleNavigation={true}
           sx={{ height: 350 }}
         >
           <Grid
