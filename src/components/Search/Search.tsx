@@ -1,7 +1,9 @@
-import TextField from "@mui/material/TextField";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../redux/store";
-import { actions } from "../../redux/slice/product"; 
+import TextField from '@mui/material/TextField';
+
+import { useSelector, useDispatch } from 'react-redux';
+
+import { AppDispatch, RootState } from '../../redux/store';
+import { actions } from '../../redux/slice/product';
 
 type PropType = {
   userInput: string;
@@ -9,15 +11,11 @@ type PropType = {
 };
 
 export default function Search({ userInput, setUserInput }: PropType) {
-  const dispatch = useDispatch();
+  console.log(userInput);
+  const dispatch = useDispatch<AppDispatch>();
   const productsList = useSelector(
-    (state: RootState) => state.product.product
+    (state: RootState) => state.product.productList
   );
-
-  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInput(e.target.value);
-    searchHandler();
-  };
 
   const searchHandler = () => {
     const result = productsList.filter((product) =>
@@ -26,17 +24,20 @@ export default function Search({ userInput, setUserInput }: PropType) {
     dispatch(actions.getProductList(result));
   };
 
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInput(e.target.value);
+    searchHandler();
+  };
+
   return (
     <div>
       <TextField
-        id="standard-basic"
-        label="Search product"
-        variant="standard"
+        id='standard-basic'
+        label='Search product'
+        variant='standard'
+        value={userInput}
         onChange={inputHandler}
-        InputLabelProps={{
-          style: { fontFamily: "'Nunito', sans-serif" },
-        }}
       />
     </div>
   );
-};
+}
