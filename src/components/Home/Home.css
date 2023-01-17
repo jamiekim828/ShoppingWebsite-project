@@ -96,9 +96,32 @@ img:hover {
 }
 
 .quick-shop {
-  border: 1px solid black;
+  border: 1px solid lightgray;
   background-color: white;
   border-radius: 0%;
   height: 40px;
   width: auto;
+  margin-left: 1px;
+  margin-right: 1px;
+  margin-top: 1px;
+  cursor: pointer;
+}
+.quick-shop:hover {
+  background-color: lightgray;
+}
+
+.title {
+  font-size: 11px;
+  font-style: normal;
+  margin-top: 5px;
+  margin-bottom: 2px;
+  text-align: left;
+}
+
+.price {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  text-align: left;
+  margin-top: 1px;
 }
