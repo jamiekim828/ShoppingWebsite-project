@@ -49,6 +49,7 @@ export default function HomeBottompart({ productsList }: PropType) {
                   overflow: 'hidden',
                   width: '30%',
                 }}
+                key={item.id}
               >
                 <Card
                   sx={{
