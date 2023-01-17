@@ -1,0 +1,10 @@
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.footer {
+    height: 80px;
+    display: flex;
+    margin-top: auto;
+}
