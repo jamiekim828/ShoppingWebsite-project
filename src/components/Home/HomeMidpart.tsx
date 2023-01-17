@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../redux/store';
+import { useState } from 'react';
 // MUI
 import Grid from '@mui/material/Unstable_Grid2';
 import Box from '@mui/material/Box';
@@ -15,7 +13,7 @@ import Carousel from 'react-material-ui-carousel';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 // File
-import { fetchProductsData } from '../../redux/thunk/product';
+import { ProductType } from '../../types/type';
 
 // MUI Typography
 const Div = styled('div')(({ theme }) => ({
@@ -24,16 +22,13 @@ const Div = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
-export default function HomeMidpart() {
-  const productsList = useSelector(
-    (state: RootState) => state.product.productList
-  );
-  const fiveStars = productsList.filter((item) => item.rating.rate > 3);
+// type
+type PropType = {
+  productsList: ProductType[];
+};
 
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    dispatch(fetchProductsData());
-  }, [dispatch]);
+export default function HomeMidpart({ productsList }: PropType) {
+  const fiveStars = productsList.filter((item) => item.rating.rate > 3);
 
   const [index, setIndex] = useState(0);
 
@@ -107,8 +102,8 @@ export default function HomeMidpart() {
             columnSpacing={{ xs: 1, sm: 1, md: 1 }}
           >
             {fiveStars.slice(index, index + 4).map((item) => (
-              <Grid xs={3}>
-                <Card sx={{ maxWidth: 345, height: 350 }}>
+              <Grid xs={3} key={item.id}>
+                <Card sx={{ maxWidth: 345, height: 330 }}>
                   <CardActionArea>
                     <CardMedia
                       component='img'
@@ -117,14 +112,22 @@ export default function HomeMidpart() {
                       alt='green iguana'
                     />
                     <CardContent>
-                      <Typography gutterBottom variant='h6' component='div'>
-                        {item.title.slice(0, 20)}
+                      <Typography
+                        gutterBottom
+                        variant='h6'
+                        component='div'
+                        sx={{ height: '43px', fontSize: '16px' }}
+                      >
+                        {item.title.slice(0, 19)}
                       </Typography>
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
                     <FavoriteBorderIcon
-                      sx={{ fontSize: '2rem', cursor: 'pointer' }}
+                      sx={{
+                        fontSize: 'xlarge',
+                        cursor: 'pointer',
+                      }}
                     />
                   </CardActions>
                 </Card>
