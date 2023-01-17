@@ -2,4 +2,12 @@
 
 .App {
   font-family: Montserrat;
+    text-align: center;
+    padding: 100px;
+    text-decoration: none;
+}
+.productList {
+  display: flex;
+  gap: 34px;
+  flex-wrap: wrap;
 }

@@ -39,7 +39,7 @@ export default function CountriesItem ({ product }: PropType) {
 
 
   return (
-          <Box key={product.id} sx={{ width: 250, marginRight: 0.5, my: 5}}>
+          <Box key={product.id} sx={{ width: 280, marginRight: 0.5, my: 5}}>
               <Typography gutterBottom variant="body2">
                 <h3>{product.title}</h3>
               </Typography>
@@ -77,7 +77,7 @@ export default function CountriesItem ({ product }: PropType) {
           </Tooltip>
       
           <Tooltip title="More info">
-            <Link to={`/product/${product.title}`}>
+            <Link to={`/productCard/${product.title}`}>
               
               <Button variant="outlined">MORE</Button>
               
