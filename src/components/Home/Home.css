@@ -69,3 +69,28 @@ img:hover {
 .slider > a:focus {
   background: #000;
 }
+
+.new-arrivals {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-arrivals button {
+  background-color: white;
+  border-radius: 0%;
+  border: 1px solid black;
+  margin-right: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  height: 33px;
+  width: 12%;
+  font-family: montserrat;
+  font-weight: 500;
+}
+
+.new-arrivals button:hover {
+  background-color: rgb(124, 124, 124);
+  color: white;
+  font-weight: 500;
+}

@@ -1,5 +1,3 @@
-import React from 'react';
-
 // MUI
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -31,49 +29,59 @@ export default function Home() {
           <FiberManualRecordIcon style={{ fontSize: '10px' }} />
         </a>
       </div>
-      <ImageList
-        sx={{ width: '100%', height: '100%' }}
-        cols={2}
-        rowHeight={400}
+      <div
+      // id='scrollableDiv'
+      // style={{
+      //   height: '100vh',
+      //   overflow: 'auto',
+      //   display: 'flex',
+      //   flexDirection: 'column-reverse',
+      // }}
       >
-        <ImageListItem key='Subheader' cols={2} style={{ height: 'auto' }}>
-          <ListSubheader
-            component='div'
-            style={{
-              fontFamily: 'montserrat',
-              fontSize: '20px',
-              color: 'black',
-            }}
-          >
-            New year, new cashmere
-          </ListSubheader>
-        </ImageListItem>
-        {NewItems.map((item) => (
-          <ImageListItem key={item.img}>
-            <img
-              src={`${item.img}`}
-              srcSet={`${item.img}`}
-              alt={item.title}
-              loading='lazy'
-            />
-            <ImageListItemBar
-              title={item.title}
-              subtitle={item.subtitle}
+        <ImageList
+          sx={{ width: '100%', height: '100%' }}
+          cols={2}
+          rowHeight={400}
+        >
+          <ImageListItem key='Subheader' cols={2} style={{ height: 'auto' }}>
+            <ListSubheader
+              component='div'
               style={{
-                backgroundColor: 'transparent',
-                fontFamily: 'Montserrat',
-                fontWeight: '500',
+                fontFamily: 'montserrat',
+                fontSize: '20px',
+                color: 'black',
               }}
-              actionIcon={
-                <IconButton
-                  aria-label={`info about ${item.title}`}
-                ></IconButton>
-              }
-            />
+            >
+              New year, new cashmere
+            </ListSubheader>
           </ImageListItem>
-        ))}
-      </ImageList>
-      <HomeMidpart />
+          {NewItems.map((item) => (
+            <ImageListItem key={item.img}>
+              <img
+                src={`${item.img}`}
+                srcSet={`${item.img}`}
+                alt={item.title}
+                loading='lazy'
+              />
+              <ImageListItemBar
+                title={item.title}
+                subtitle={item.subtitle}
+                style={{
+                  backgroundColor: 'transparent',
+                  fontFamily: 'Montserrat',
+                  fontWeight: '500',
+                }}
+                actionIcon={
+                  <IconButton
+                    aria-label={`info about ${item.title}`}
+                  ></IconButton>
+                }
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
+        <HomeMidpart />
+      </div>
     </div>
   );
 }
