@@ -17,7 +17,6 @@ import {Switch} from "@mui/material";
 
 
 
-//fsdoiujgsiodfjoijf
 export default function Navbar() {
     const [mode,setMode]=useState(false)
 const theme = createTheme({
