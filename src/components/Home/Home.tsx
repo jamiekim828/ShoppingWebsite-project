@@ -8,7 +8,6 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 // file
 import './Home.css';
-import HomeMidpart from './HomeMidpart';
 
 export default function Home() {
   return (
@@ -29,15 +28,7 @@ export default function Home() {
           <FiberManualRecordIcon style={{ fontSize: '10px' }} />
         </a>
       </div>
-      <div
-      // id='scrollableDiv'
-      // style={{
-      //   height: '100vh',
-      //   overflow: 'auto',
-      //   display: 'flex',
-      //   flexDirection: 'column-reverse',
-      // }}
-      >
+      <div>
         <ImageList
           sx={{ width: '100%', height: '100%' }}
           cols={2}
@@ -80,7 +71,6 @@ export default function Home() {
             </ImageListItem>
           ))}
         </ImageList>
-        <HomeMidpart />
       </div>
     </div>
   );
