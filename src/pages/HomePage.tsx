@@ -3,9 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // file
 import { AppDispatch, RootState } from '../redux/store';
-import Navbar from '../components/Navbar/Navbar';
 import Home from '../components/Home/Home';
-import Footer from '../components/Footer/Footer';
 import HomeMidpart from '../components/Home/HomeMidpart';
 import HomeBottompart from '../components/Home/HomeBottompart';
 import { fetchOneProductData, fetchProductsData } from '../redux/thunk/product';
@@ -47,7 +45,6 @@ export default function HomePage() {
 
   return (
     <div>
-      <Navbar />
       <Home />
       <HomeMidpart
         productsList={productsList}
@@ -60,7 +57,6 @@ export default function HomePage() {
         favoriteHandler={favoriteHandler}
         goToProductDetail={goToProductDetail}
       />
-      <Footer />
     </div>
   );
 }

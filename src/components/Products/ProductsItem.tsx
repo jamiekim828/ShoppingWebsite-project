@@ -28,58 +28,52 @@ export default function CountriesItem({ product }: PropType) {
   };
 
   return (
-          <Box key={product.id} sx={{ width: 280, marginRight: 0.5, my: 5}}>
-              <Typography gutterBottom variant="body2">
-                <h3>{product.title}</h3>
-              </Typography>
-              <Typography gutterBottom variant="body2">
-              Category: {product.category}
-              </Typography>
-              <img
-              style={{ width: 210, height: 118 }}
-              alt={product.title}
-              src={product.image}
-            />
-              <Typography variant="caption" color="text.secondary">
-                <b>price : ${product.price}</b>
-              </Typography>
-              <Typography variant="caption" color="text.secondary">
-                 Rating : {product.rating.count}
-              </Typography>
-              <div className="icons">
-          <Tooltip title="Add favorite">
-            <IconButton
-              aria-label="add to favorites"
-              onClick={handleClick}
-            >
-              <FavoriteIcon sx={{ color:  "gray"  }} />
-            </IconButton>
-          </Tooltip>
-       
-        <Tooltip title="Add to cart">
-            <IconButton
-              aria-label="add to cart"
-              onClick={handleClick}
-            >
-              <AddShoppingCartIcon sx={{ color:  "gray"  }} />
-            </IconButton>
-          </Tooltip>
-      
-          <Tooltip title="More info">
-            <Link to={`/products/${product.title}`}>
-              
-              <Button variant="outlined">MORE</Button>
-              
-            </Link>
-          </Tooltip>
-          <Snackbar open={open} autoHideDuration={1500} onClose={handleClose}>
-            <Alert
-              onClose={handleClose}
-              severity="success"
-              sx={{ width: "100%" }}
-            >
-             add to favorite list!
-            </Alert>
-          </Snackbar>
-        </div>
-            </Box>
+    <Box key={product.id} sx={{ width: 280, marginRight: 0.5, my: 5 }}>
+      <Typography gutterBottom variant='body2'>
+        <h3>{product.title}</h3>
+      </Typography>
+      <Typography gutterBottom variant='body2'>
+        Category: {product.category}
+      </Typography>
+      <img
+        style={{ width: 210, height: 118 }}
+        alt={product.title}
+        src={product.image}
+      />
+      <Typography variant='caption' color='text.secondary'>
+        <b>price : ${product.price}</b>
+      </Typography>
+      <Typography variant='caption' color='text.secondary'>
+        Rating : {product.rating.count}
+      </Typography>
+      <div className='icons'>
+        <Tooltip title='Add favorite'>
+          <IconButton aria-label='add to favorites' onClick={handleClick}>
+            <FavoriteIcon sx={{ color: 'gray' }} />
+          </IconButton>
+        </Tooltip>
+
+        <Tooltip title='Add to cart'>
+          <IconButton aria-label='add to cart' onClick={handleClick}>
+            <AddShoppingCartIcon sx={{ color: 'gray' }} />
+          </IconButton>
+        </Tooltip>
+
+        <Tooltip title='More info'>
+          <Link to={`/products/${product.id}`}>
+            <Button variant='outlined'>MORE</Button>
+          </Link>
+        </Tooltip>
+        <Snackbar open={open} autoHideDuration={1500} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity='success'
+            sx={{ width: '100%' }}
+          >
+            add to favorite list!
+          </Alert>
+        </Snackbar>
+      </div>
+    </Box>
+  );
+}

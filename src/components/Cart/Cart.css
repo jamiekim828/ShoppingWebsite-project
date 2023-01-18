@@ -1,0 +1,18 @@
+.cart-div {
+  display: flex;
+}
+
+.cart-list-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shopping-bag {
+  font-weight: 700;
+}
+
+.cart-list,
+.price-list {
+  display: flex;
+  flex-direction: column;
+}
