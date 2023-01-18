@@ -1,80 +1,85 @@
-import TextField from "@mui/material/TextField";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../../redux/store";
-import { actions } from "../../redux/slice/product"; 
+import TextField from '@mui/material/TextField';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../../redux/store';
+import { actions } from '../../redux/slice/product';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { fetchProductsData } from "../../redux/thunk/product";
+import { fetchProductsData } from '../../redux/thunk/product';
+
+import './Search.css';
 
 type PropType = {
   userInput: string;
+  filter: string;
   setUserInput: React.Dispatch<React.SetStateAction<string>>;
-  filter : string;
-  setFilter : React.Dispatch<React.SetStateAction<string>>;
+  setFilter: React.Dispatch<React.SetStateAction<string>>;
+  setSearchResult: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function Search({ userInput, setUserInput, filter, setFilter }: PropType) {
+export default function Search({
+  userInput,
+  filter,
+  setUserInput,
+  setFilter,
+  setSearchResult,
+}: PropType) {
   const dispatch = useDispatch<AppDispatch>();
+
   const productsList = useSelector(
     (state: RootState) => state.product.productList
   );
-    
-  
 
+  // search
   const searchHandler = () => {
     const result = productsList.filter((product) =>
       product.title.toLowerCase().includes(userInput.toLowerCase())
     );
     dispatch(actions.getProductList(result));
+    if (result.length === 0) {
+      setSearchResult(false);
+    }
   };
-  
 
   // filter selection handle change
   const handleChange = (event: SelectChangeEvent) => {
     setFilter(event.target.value);
   };
-  const filterArray = [
-    'Name',
-    'Categiry',
-    'Price',
-  ];
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
     searchHandler();
   };
 
+  const category = productsList.map((item) => item.category);
+  const categoryList = category.filter((c, index) => {
+    return category.indexOf(c) === index;
+  });
+
   return (
-    <div>
+    <div className='search-container'>
       <TextField
         id='standard-basic'
-        label='Search product'
+        label='Search by name'
         variant='standard'
         value={userInput}
         onChange={inputHandler}
         InputLabelProps={{
-          style: { fontFamily: "'Nunito', sans-serif" },
+          style: { fontFamily: 'Montserrat' },
         }}
       />
-      <div className='region-option'>
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel
-            id='demo-simple-select-helper-label'
-            sx={{ fontFamily: 'nunito' }}
-          >
-           Filter
-          </InputLabel>
+      <div>
+        <FormControl variant='standard' sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id='demo-simple-select-standard-label'>Sort</InputLabel>
           <Select
-            labelId='demo-simple-select-helper-label'
-            id='demo-simple-select-helper'
+            labelId='demo-simple-select-standard-label'
+            id='demo-simple-select-standard'
             value={filter}
-            label='filter'
             onChange={handleChange}
+            label='Sort'
           >
             <MenuItem
-              sx={{ fontFamily: 'nunito' }}
               value=''
               onClick={() => {
                 dispatch(fetchProductsData());
@@ -82,15 +87,28 @@ export default function Search({ userInput, setUserInput, filter, setFilter }: P
             >
               <em>All</em>
             </MenuItem>
-            {filterArray.map((filterName) => (
+            <MenuItem
+              onClick={() => {
+                dispatch(actions.sortByName(productsList));
+              }}
+            >
+              Name
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                dispatch(actions.sortByPrice(productsList));
+              }}
+            >
+              Price
+            </MenuItem>
+            {categoryList.map((c) => (
               <MenuItem
-                sx={{ fontFamily: 'nunito' }}
+                key={c}
                 onClick={() => {
-                  dispatch(fetchProductsData());
+                  dispatch(actions.sortByCategory(c));
                 }}
-                key={filterName}
               >
-                {filterName}
+                {c}
               </MenuItem>
             ))}
           </Select>
