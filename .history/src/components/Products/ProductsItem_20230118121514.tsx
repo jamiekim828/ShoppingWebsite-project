@@ -1,4 +1,5 @@
 import { ProductType } from "../../types/type";
+import { actions } from "../../redux/slice/product"; 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import {
@@ -16,6 +17,7 @@ import { useState } from "react";
 import { fetchOneProductData } from "../../redux/thunk/product";
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store';
+import { blue, brown } from "@mui/material/colors";
 
 
 

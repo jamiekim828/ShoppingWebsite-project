@@ -1,4 +1,5 @@
 import { ProductType } from "../../types/type";
+import { actions } from "../../redux/slice/product"; 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import {
@@ -40,7 +41,7 @@ export default function CountriesItem ({ product }: PropType) {
 
 
   return (
-          <Box key={product.id} sx={{ width: 280, marginRight: 0.5, my: 5 }}>
+          <Box key={product.id} sx={{ width: 280, marginRight: 0.5, my: 5}}>
               <Typography gutterBottom variant="body2">
                 <h3>{product.title}</h3>
               </Typography>
@@ -53,7 +54,7 @@ export default function CountriesItem ({ product }: PropType) {
               src={product.image}
             />
               <Typography variant="caption" color="text.secondary">
-                <h3>price : ${product.price}</h3>
+                <b>price : ${product.price}</b>
               </Typography>
               <Typography variant="caption" color="text.secondary">
                  Rating : {product.rating.count}

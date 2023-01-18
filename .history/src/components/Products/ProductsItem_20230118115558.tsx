@@ -1,4 +1,5 @@
 import { ProductType } from "../../types/type";
+import { actions } from "../../redux/slice/product"; 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import {
@@ -14,8 +15,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { fetchOneProductData } from "../../redux/thunk/product";
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../redux/store';
 
 
 
@@ -23,7 +22,6 @@ type PropType = {
   product: ProductType;
 };
 export default function CountriesItem ({ product }: PropType) {
-  const dispatch = useDispatch<AppDispatch>();
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(true);
@@ -40,7 +38,7 @@ export default function CountriesItem ({ product }: PropType) {
 
 
   return (
-          <Box key={product.id} sx={{ width: 280, marginRight: 0.5, my: 5 }}>
+          <Box key={product.id} sx={{ width: 280, marginRight: 0.5, my: 5}}>
               <Typography gutterBottom variant="body2">
                 <h3>{product.title}</h3>
               </Typography>
@@ -53,7 +51,7 @@ export default function CountriesItem ({ product }: PropType) {
               src={product.image}
             />
               <Typography variant="caption" color="text.secondary">
-                <h3>price : ${product.price}</h3>
+                <b>price : ${product.price}</b>
               </Typography>
               <Typography variant="caption" color="text.secondary">
                  Rating : {product.rating.count}
@@ -78,7 +76,7 @@ export default function CountriesItem ({ product }: PropType) {
           </Tooltip>
       
           <Tooltip title="More info">
-            <Link to={`/product/${product.id}`}>
+            <Link to={`/Products/${product.id}`}>
               
               <Button variant="outlined" 
               onClick={() => {
