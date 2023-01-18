@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -25,12 +26,16 @@ const Div = styled('div')(({ theme }) => ({
 // type
 type PropType = {
   productsList: ProductType[];
-  addFavorite: Function;
+  favoriteHandler: Function;
+  goToProductDetail: Function;
+  wishList: ProductType[];
 };
 
 export default function HomeBottompart({
   productsList,
-  addFavorite,
+  favoriteHandler,
+  goToProductDetail,
+  wishList,
 }: PropType) {
   // MUI
   const [open, setOpen] = useState(false);
@@ -91,13 +96,34 @@ export default function HomeBottompart({
                     height='170'
                     image={`${item.image}`}
                     alt='green iguana'
+                    onClick={() => goToProductDetail(item)}
                   />
-                  <FavoriteBorderIcon
-                    sx={{ zIndex: 2, marginLeft: '5px', cursor: 'pointer' }}
-                    onClick={() => addFavorite(item)}
-                  />
+                  <div>
+                    {wishList.some((i) => i.id === item.id) ? (
+                      <FavoriteIcon
+                        sx={{ zIndex: 2, marginLeft: '5px', cursor: 'pointer' }}
+                        onClick={() => {
+                          favoriteHandler(item);
+                        }}
+                      />
+                    ) : (
+                      <FavoriteBorderIcon
+                        sx={{ zIndex: 2, marginLeft: '5px', cursor: 'pointer' }}
+                        onClick={() => {
+                          favoriteHandler(item);
+                        }}
+                      />
+                    )}
+                  </div>
                 </Card>
-                <button className='quick-shop'>QUICK SHOP</button>
+                <button
+                  className='quick-shop'
+                  onClick={() => {
+                    goToProductDetail(item);
+                  }}
+                >
+                  QUICK SHOP
+                </button>
                 <p className='title'>{item.title.slice(0, 10)}</p>
                 <p className='price'>$ {item.price}</p>
               </div>
