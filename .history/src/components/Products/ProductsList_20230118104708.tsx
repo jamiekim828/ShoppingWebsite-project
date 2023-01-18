@@ -23,6 +23,7 @@ export default function ProductList({ userInput }: PropType) {
       dispatch(fetchProductsData());
     }
   }, [dispatch, userInput]);
+  
   return (
     <div className="productList">
       {productsList.length === 0 && (
