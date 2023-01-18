@@ -18,32 +18,32 @@ import { Link as RouterLink } from "react-router-dom";
 import { ProductType} from "../../types/type"; 
 
 type PropType = {
-  productDetail: ProductType;
+  ProductDetail: ProductType;
 };
 
-export default function ProductDetail({ productDetail }: PropType) {
+export default function ProductDetail({ ProductDetail }: PropType) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="country">
-            {productDetail.title.charAt(0).toUpperCase()}
+            {ProductDetail.title.charAt(0).toUpperCase()}
           </Avatar>
         }
-        title={productDetail.title}
-        subheader={productDetail.category[0]}
+        title={ProductDetail.title}
+        subheader={ProductDetail.category[0]}
         sx={{ textAlign: "left" }}
       />
       <CardMedia
         component="img"
         height="194"
         sx={{ border: "1px solid lightgrey" }}
-        image={productDetail.image}
+        image={ProductDetail.image}
         alt="Paella dish"
       />
       <CardContent>
           <Typography variant="body2" color="text.secondary" component="p" align="center">
-              The country belongs to <strong className="countrydetailtext">{productDetail.description}</strong>        </Typography>
+              The country belongs to <strong className="countrydetailtext">{ProductDetail.description}</strong>        </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <Tooltip title="Back">
