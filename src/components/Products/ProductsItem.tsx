@@ -60,7 +60,7 @@ export default function CountriesItem({ product }: PropType) {
         </Tooltip>
 
         <Tooltip title='More info'>
-          <Link to={`/productCard/${product.title}`}>
+          <Link to={`/products/${product.id}`}>
             <Button variant='outlined'>MORE</Button>
           </Link>
         </Tooltip>

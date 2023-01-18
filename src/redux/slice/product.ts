@@ -31,6 +31,12 @@ const productSlice = createSlice({
     addWishList: (state, action) => {
       state.wishList.push(action.payload);
     },
+    removeWishList: (state, action) => {
+      const filter = state.wishList.filter(
+        (product) => product.id !== action.payload.id
+      );
+      state.wishList = filter;
+    },
     addCart: (state, action) => {
       state.cart.push(action.payload);
     },

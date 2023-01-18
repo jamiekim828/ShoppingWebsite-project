@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, CardActions } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Carousel from 'react-material-ui-carousel';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -25,9 +26,15 @@ const Div = styled('div')(({ theme }) => ({
 // type
 type PropType = {
   productsList: ProductType[];
+  favoriteHandler: Function;
+  goToProductDetail: Function;
 };
 
-export default function HomeMidpart({ productsList }: PropType) {
+export default function HomeMidpart({
+  productsList,
+  favoriteHandler,
+  goToProductDetail,
+}: PropType) {
   const fiveStars = productsList.filter((item) => item.rating.rate > 3);
 
   const [index, setIndex] = useState(0);
@@ -44,6 +51,8 @@ export default function HomeMidpart({ productsList }: PropType) {
       setIndex(3);
     }
   };
+
+  const wishListData = JSON.parse(localStorage.getItem('wishlist') || '{}');
 
   return (
     <div>
@@ -94,6 +103,8 @@ export default function HomeMidpart({ productsList }: PropType) {
             />
           }
           fullHeightHover={false}
+          navButtonsAlwaysVisible={true}
+          cycleNavigation={true}
           sx={{ height: 350 }}
         >
           <Grid
@@ -106,6 +117,7 @@ export default function HomeMidpart({ productsList }: PropType) {
                 <Card sx={{ maxWidth: 345, height: 340 }}>
                   <CardActionArea
                     sx={{ display: 'flex', flexDirection: 'column' }}
+                    onClick={() => goToProductDetail(item)}
                   >
                     <CardMedia
                       sx={{ objectFit: 'contain' }}
@@ -130,12 +142,33 @@ export default function HomeMidpart({ productsList }: PropType) {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <FavoriteBorderIcon
-                      sx={{
-                        fontSize: 'xlarge',
-                        cursor: 'pointer',
-                      }}
-                    />
+                    <div>
+                      {wishListData.some(
+                        (i: ProductType) => i.id === item.id
+                      ) ? (
+                        <FavoriteIcon
+                          sx={{
+                            zIndex: 2,
+                            marginLeft: '5px',
+                            cursor: 'pointer',
+                          }}
+                          onClick={() => {
+                            favoriteHandler(item);
+                          }}
+                        />
+                      ) : (
+                        <FavoriteBorderIcon
+                          sx={{
+                            zIndex: 2,
+                            marginLeft: '5px',
+                            cursor: 'pointer',
+                          }}
+                          onClick={() => {
+                            favoriteHandler(item);
+                          }}
+                        />
+                      )}
+                    </div>
                   </CardActions>
                 </Card>
               </Grid>

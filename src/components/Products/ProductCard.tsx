@@ -18,6 +18,8 @@ export default function ProductCard() {
     dispatch(fetchOneProductData(productId));
   }, [dispatch, productId]);
 
+  console.log(productDetail[0]);
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <ProductDetail productDetail={productDetail[0]} />

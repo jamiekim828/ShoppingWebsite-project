@@ -11,7 +11,6 @@ type PropType = {
 };
 
 export default function Search({ userInput, setUserInput }: PropType) {
-  console.log(userInput);
   const dispatch = useDispatch<AppDispatch>();
   const productsList = useSelector(
     (state: RootState) => state.product.productList

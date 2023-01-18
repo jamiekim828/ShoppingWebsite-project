@@ -1,9 +1,18 @@
+import { useState } from 'react';
+
 // MUI
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 // file
 import { ProductType } from '../../types/type';
@@ -17,9 +26,29 @@ const Div = styled('div')(({ theme }) => ({
 // type
 type PropType = {
   productsList: ProductType[];
+  favoriteHandler: Function;
+  goToProductDetail: Function;
+  wishList: ProductType[];
 };
 
-export default function HomeBottompart({ productsList }: PropType) {
+export default function HomeBottompart({
+  productsList,
+  favoriteHandler,
+  goToProductDetail,
+  wishList,
+}: PropType) {
+  // MUI
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  // filter women's
   const women = productsList.filter((item) => item.category.includes('women'));
 
   return (
@@ -30,6 +59,7 @@ export default function HomeBottompart({ productsList }: PropType) {
           height: '30%',
           textAlign: 'center',
           marginTop: '3rem',
+          marginBottom: '3rem',
         }}
       >
         <Div
@@ -53,9 +83,10 @@ export default function HomeBottompart({ productsList }: PropType) {
               >
                 <Card
                   sx={{
-                    height: 180,
+                    height: 200,
                     marginRight: '4px',
                     marginLeft: '4px',
+                    textAlign: 'left',
                   }}
                   key={item.id}
                 >
@@ -65,10 +96,34 @@ export default function HomeBottompart({ productsList }: PropType) {
                     height='170'
                     image={`${item.image}`}
                     alt='green iguana'
+                    onClick={() => goToProductDetail(item)}
                   />
-                  <FavoriteBorderIcon sx={{ zIndex: 1 }} />
+                  <div>
+                    {wishList.some((i) => i.id === item.id) ? (
+                      <FavoriteIcon
+                        sx={{ zIndex: 2, marginLeft: '5px', cursor: 'pointer' }}
+                        onClick={() => {
+                          favoriteHandler(item);
+                        }}
+                      />
+                    ) : (
+                      <FavoriteBorderIcon
+                        sx={{ zIndex: 2, marginLeft: '5px', cursor: 'pointer' }}
+                        onClick={() => {
+                          favoriteHandler(item);
+                        }}
+                      />
+                    )}
+                  </div>
                 </Card>
-                <button className='quick-shop'>QUICK SHOP</button>
+                <button
+                  className='quick-shop'
+                  onClick={() => {
+                    goToProductDetail(item);
+                  }}
+                >
+                  QUICK SHOP
+                </button>
                 <p className='title'>{item.title.slice(0, 10)}</p>
                 <p className='price'>$ {item.price}</p>
               </div>
@@ -76,6 +131,72 @@ export default function HomeBottompart({ productsList }: PropType) {
           </div>
         </Div>
       </Box>
+      <p style={{ fontSize: '18px', fontWeight: '600' }}>
+        Show us how you wear it
+      </p>
+      <Button
+        variant='outlined'
+        onClick={handleClickOpen}
+        sx={{
+          borderRadius: '30px',
+          border: '2px solid #bdbdbd',
+          color: '#212121',
+          fontWeight: '600',
+          height: '50px',
+          width: '180px',
+          marginRight: '20px',
+          cursor: 'pointer',
+          '&:hover': {
+            backgroundColor: '#ffe082',
+            color: '#212121',
+            border: '2px solid #ffe082',
+          },
+        }}
+      >
+        Add your photo
+      </Button>
+      <Button
+        variant='outlined'
+        sx={{
+          borderRadius: '30px',
+          border: '2px solid #bdbdbd',
+          color: '#212121',
+          fontWeight: '600',
+          height: '50px',
+          width: '180px',
+          marginLeft: '20px',
+          cursor: 'pointer',
+          '&:hover': {
+            backgroundColor: '#ffe082',
+            color: '#212121',
+            border: '2px solid #ffe082',
+          },
+        }}
+      >
+        View gallery
+      </Button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>ADD YOU PHOTO</DialogTitle>
+        <DialogContent sx={{ marginBottom: '70px', textAlign: 'center' }}>
+          <DialogContentText sx={{ fontSize: '12px' }}>
+            1. Upload 2. Caption 3. Submit
+          </DialogContentText>
+          <DialogContentText>
+            Take what we make and make it yours.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Computer</Button>
+          <Button onClick={handleClose}>Facebook</Button>
+          <Button onClick={handleClose}>Instagram</Button>
+          <Button
+            onClick={handleClose}
+            sx={{ color: '#d50000', fontWeight: '600' }}
+          >
+            X
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
