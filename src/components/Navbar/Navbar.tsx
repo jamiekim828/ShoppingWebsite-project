@@ -6,7 +6,8 @@ import logo from '../Assets/logo.png'
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import Badge from '@mui/material/Badge';
+import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -31,12 +32,7 @@ palette: {
           <ThemeProvider theme={theme}>
               <Box sx={{flexGrow: 1}}>
                       <AppBar position="static"
-                             /*style={{backgroundColor: 'pink'}}*/
-                              /*sx={{
 
-                                  bgcolor: 'transparent',
-
-                                 }}*/
                       >
                           <Toolbar>
                               <img src={logo} alt='logo' height='80px' width='80px'/>
