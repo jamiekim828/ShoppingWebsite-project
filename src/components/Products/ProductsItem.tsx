@@ -1,28 +1,18 @@
-import { ProductType } from "../../types/type";
-import { actions } from "../../redux/slice/product"; 
+import { ProductType } from '../../types/type';
+
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import {
-  Tooltip,
-  TableCell,
-  Snackbar,
-  Alert,
-  IconButton,
-  Button
-  
-} from "@mui/material";
+import { Tooltip, Snackbar, Alert, IconButton, Button } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
-
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 type PropType = {
   product: ProductType;
 };
-export default function CountriesItem ({ product }: PropType) {
+export default function CountriesItem({ product }: PropType) {
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(true);
@@ -31,12 +21,11 @@ export default function CountriesItem ({ product }: PropType) {
     event?: React.SyntheticEvent | Event,
     reason?: string
   ) => {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
   };
-
 
   return (
           <Box key={product.id} sx={{ width: 280, marginRight: 0.5, my: 5}}>
@@ -94,5 +83,3 @@ export default function CountriesItem ({ product }: PropType) {
           </Snackbar>
         </div>
             </Box>
-  );
-};

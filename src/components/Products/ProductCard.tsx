@@ -25,4 +25,3 @@ export default function ProductCard() {
       <ProductDetail productDetail={productDetail[0]} />
     </div>
   );
-}
