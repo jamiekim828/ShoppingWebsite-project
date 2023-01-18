@@ -7,16 +7,15 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { fetchProductsData } from "../../redux/thunk/product";
+import { useState } from "react";
 
 type PropType = {
   userInput: string;
   setUserInput: React.Dispatch<React.SetStateAction<string>>;
-  filter : string;
-  setFilter : React.Dispatch<React.SetStateAction<string>>;
 };
 
-export default function Search({ userInput, setUserInput, filter, setFilter }: PropType) {
-  const dispatch = useDispatch<AppDispatch>();
+
+export default function Search({ userInput, setUserInput }: PropType) {
   const productsList = useSelector(
     (state: RootState) => state.product.productList
   );
@@ -30,15 +29,26 @@ export default function Search({ userInput, setUserInput, filter, setFilter }: P
     dispatch(actions.getProductList(result));
   };
   
+  const [filter, setFilter] = useState<string>('');
+  const [result, setResult] = useState<boolean>(true);
+
 
   // filter selection handle change
   const handleChange = (event: SelectChangeEvent) => {
     setFilter(event.target.value);
   };
-  const filterArray = [
-    'Name',
-    'Categiry',
-    'Price',
+  // search function on change
+  const dispatch = useDispatch<AppDispatch>();
+  const searchUserInput = (name: string) => {
+    const result = productsList.filter((product) =>
+      product.title.toLocaleLowerCase().includes(name.toLocaleLowerCase())
+    );
+  };
+
+  const sortOptions = [
+    'title',
+    'price',
+    'category',
   ];
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +68,8 @@ export default function Search({ userInput, setUserInput, filter, setFilter }: P
           style: { fontFamily: "'Nunito', sans-serif" },
         }}
       />
-      <div className='region-option'>
+      
+      <div className='filter'>
         <FormControl sx={{ m: 1, minWidth: 120 }}>
           <InputLabel
             id='demo-simple-select-helper-label'
@@ -75,22 +86,22 @@ export default function Search({ userInput, setUserInput, filter, setFilter }: P
           >
             <MenuItem
               sx={{ fontFamily: 'nunito' }}
-              value=''
               onClick={() => {
                 dispatch(fetchProductsData());
               }}
             >
               <em>All</em>
             </MenuItem>
-            {filterArray.map((filterName) => (
+            {sortOptions.map((item, index) => (
               <MenuItem
                 sx={{ fontFamily: 'nunito' }}
+                value = {item}
+                key={index}
                 onClick={() => {
                   dispatch(fetchProductsData());
                 }}
-                key={filterName}
               >
-                {filterName}
+                {item}
               </MenuItem>
             ))}
           </Select>

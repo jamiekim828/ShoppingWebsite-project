@@ -10,7 +10,6 @@ import { RootState, AppDispatch } from '../../redux/store';
 
 type PropType = {
   userInput: string;
-  
 };
 
 export default function ProductList({ userInput }: PropType) {
