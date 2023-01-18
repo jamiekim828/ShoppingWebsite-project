@@ -135,6 +135,7 @@ export default function HomeBottompart({
         Show us how you wear it
       </p>
       <Button
+        className='add-photo'
         variant='outlined'
         onClick={handleClickOpen}
         sx={{
@@ -156,6 +157,7 @@ export default function HomeBottompart({
         Add your photo
       </Button>
       <Button
+        className='add-photo'
         variant='outlined'
         sx={{
           borderRadius: '30px',
