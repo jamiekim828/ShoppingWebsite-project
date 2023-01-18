@@ -55,7 +55,7 @@ export default function HomeMidpart({
   const wishListData = JSON.parse(localStorage.getItem('wishlist') || '{}');
 
   return (
-    <div>
+    <div className='home-mid'>
       <div
         className='new-arrivals'
         style={{ marginTop: '3rem', marginBottom: '5rem' }}
@@ -122,7 +122,7 @@ export default function HomeMidpart({
                     <CardMedia
                       sx={{ objectFit: 'contain' }}
                       component='img'
-                      height='240'
+                      height='170'
                       image={`${item.image}`}
                       alt={item.title}
                     />

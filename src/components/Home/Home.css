@@ -2,6 +2,14 @@
   box-sizing: border-box;
 }
 
+.home-mid {
+  padding: 100px;
+}
+
+.home-bottom {
+  padding: 100px;
+}
+
 img:hover {
   webkit-filter: blur(4px);
   filter: blur(4px);

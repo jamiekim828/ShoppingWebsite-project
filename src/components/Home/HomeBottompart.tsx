@@ -52,7 +52,7 @@ export default function HomeBottompart({
   const women = productsList.filter((item) => item.category.includes('women'));
 
   return (
-    <div>
+    <div className='home-bottom'>
       <Box
         sx={{
           width: '100%',
