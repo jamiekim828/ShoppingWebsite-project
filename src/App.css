@@ -8,7 +8,7 @@
 }
 .productList {
   display: flex;
-  gap: 34px;
+  gap: 15px;
   flex-wrap: wrap;
 }
 

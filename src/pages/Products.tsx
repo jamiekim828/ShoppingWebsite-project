@@ -4,11 +4,10 @@ import ProductsList from "../components/Products/ProductsList";
 
 const Products = () => {
   const [userInput, setUserInput] = useState<string>("");
-  const [filter, setFilter] = useState<string>('');
 
   return (
     <div className="product">
-      <Search userInput={userInput} setUserInput={setUserInput} filter = {filter} setFilter = {setFilter}/>
+      <Search userInput={userInput} setUserInput={setUserInput}/>
       <ProductsList userInput={userInput}/>
     </div>
   );

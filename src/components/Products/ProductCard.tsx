@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { AppDispatch, RootState } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOneProductData } from '../../redux/thunk/product';
-import ProductDetail from './ProductDetail';
+import ProductDetail from "./ProductDetail"
 
 export default function ProductCard() {
   const { id } = useParams();

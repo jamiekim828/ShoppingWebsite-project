@@ -8,11 +8,13 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 
 type PropType = {
   product: ProductType;
 };
 export default function CountriesItem({ product }: PropType) {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(true);
@@ -28,7 +30,7 @@ export default function CountriesItem({ product }: PropType) {
   };
 
   return (
-    <Box key={product.id} sx={{ width: 280, marginRight: 0.5, my: 5 }}>
+    <Box key={product.id} sx={{ width: 280, marginRight: 0.5, my: 5, backgroundColor:"#fefcfc" }}>
       <Typography gutterBottom variant='body2'>
         <h3>{product.title}</h3>
       </Typography>
@@ -40,11 +42,13 @@ export default function CountriesItem({ product }: PropType) {
         alt={product.title}
         src={product.image}
       />
-      <Typography variant='caption' color='text.secondary'>
-        <b>price : ${product.price}</b>
+      <Typography variant='caption' color='red'>
+        <h3>price : ${product.price}</h3>
+
       </Typography>
-      <Typography variant='caption' color='text.secondary'>
-        Rating : {product.rating.count}
+      <Typography variant='caption' color='text.secoundry'>
+        <p>Rating : {product.rating.count}</p>
+
       </Typography>
       <div className='icons'>
         <Tooltip title='Add favorite'>
@@ -60,7 +64,7 @@ export default function CountriesItem({ product }: PropType) {
         </Tooltip>
 
         <Tooltip title='More info'>
-          <Link to={`/products/${product.id}`}>
+          <Link to={`/product/${product.id}`}>
             <Button variant='outlined'>MORE</Button>
           </Link>
         </Tooltip>
