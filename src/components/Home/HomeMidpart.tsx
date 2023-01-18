@@ -122,7 +122,7 @@ export default function HomeMidpart({
                     <CardMedia
                       sx={{ objectFit: 'contain' }}
                       component='img'
-                      height='170'
+                      height='230'
                       image={`${item.image}`}
                       alt={item.title}
                     />

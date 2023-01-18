@@ -35,7 +35,7 @@ export default function Cart() {
         <div className='signup'>
           <p>Want free shipping on every order at sim? sign up</p>
         </div>
-        <div className='price'>
+        <div className='price-div'>
           <div>Item Subtotal</div>
           <div className='shipping-fee'>
             <p>Estimated Shipping</p>
@@ -46,7 +46,11 @@ export default function Cart() {
         <div className='checkout-button'>
           <button className='checkout'>CHECKOUT</button>
           <button>
-            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/2560px-PayPal.svg.png' />
+            <img
+              alt='paypal'
+              className='paypal'
+              src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/2560px-PayPal.svg.png'
+            />
           </button>
         </div>
       </div>

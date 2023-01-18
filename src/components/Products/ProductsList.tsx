@@ -1,16 +1,16 @@
 import { Box } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ProductsItem from './ProductsItem';
 import { fetchProductsData } from '../../redux/thunk/product';
 import { RootState, AppDispatch } from '../../redux/store';
+import './ProductsList.css';
 
 type PropType = {
   userInput: string;
-  
 };
 
 export default function ProductList({ userInput }: PropType) {

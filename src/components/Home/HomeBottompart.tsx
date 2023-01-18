@@ -101,7 +101,7 @@ export default function HomeBottompart({
                   <div>
                     {wishList.some((i) => i.id === item.id) ? (
                       <FavoriteIcon
-                        sx={{ zIndex: 2, marginLeft: '5px', cursor: 'pointer' }}
+                        sx={{ zIndex: 1, marginLeft: '5px', cursor: 'pointer' }}
                         onClick={() => {
                           favoriteHandler(item);
                         }}

@@ -7,7 +7,7 @@
 }
 
 .cart-list {
-  width: 54%;
+  width: 60%;
   padding-right: 8%;
 }
 
@@ -63,9 +63,10 @@
   margin-bottom: 30px;
 }
 
-.price {
+.price-div {
   font-size: 18px;
   margin-bottom: 30px;
+  text-align: left;
 }
 
 .shipping-fee {
@@ -85,11 +86,25 @@
   color: white;
 }
 
-img {
+.paypal {
   width: 35%;
   height: auto;
 }
 
 button {
   cursor: pointer;
+}
+
+.cart-img {
+  width: 90px;
+}
+
+.row {
+  display: flex;
+}
+
+.cart-title {
+  display: flex;
+  flex-direction: column;
+  width: 130px;
 }
