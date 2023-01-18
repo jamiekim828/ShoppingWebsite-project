@@ -10,15 +10,16 @@ import { RootState, AppDispatch } from "../../redux/store";
 
 type PropType = {
   userInput: string;
-  
 };
 
 
 export default function ProductList({ userInput }: PropType) {
+  const [sortBtn, setSortBtn] = useState(false);
   const productsList = useSelector(
     (state: RootState) => state.product.productList
   );
   const dispatch = useDispatch<AppDispatch>();
+  const dispatchNorm = useDispatch();
   useEffect(() => {
     if (userInput === "") {
       dispatch(fetchProductsData());

@@ -67,7 +67,7 @@ export default function Search({ userInput, setUserInput, filter, setFilter }: P
             id='demo-simple-select-helper-label'
             sx={{ fontFamily: 'nunito' }}
           >
-           Filter
+            By Filter
           </InputLabel>
           <Select
             labelId='demo-simple-select-helper-label'
@@ -89,7 +89,7 @@ export default function Search({ userInput, setUserInput, filter, setFilter }: P
               <MenuItem
                 sx={{ fontFamily: 'nunito' }}
                 onClick={() => {
-                  dispatch(fetchProductsData());
+                  dispatch(fetchByFilter(filterName));
                 }}
                 key={filterName}
               >

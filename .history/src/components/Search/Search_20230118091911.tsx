@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../../redux/store";
+import { RootState } from "../../redux/store";
 import { actions } from "../../redux/slice/product"; 
 
 
@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { fetchProductsData } from "../../redux/thunk/product";
+
 
 type PropType = {
   userInput: string;
@@ -19,12 +20,10 @@ type PropType = {
 
 
 export default function Search({ userInput, setUserInput, filter, setFilter }: PropType) {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   const productsList = useSelector(
     (state: RootState) => state.product.productList
   );
-    
-  
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
@@ -67,7 +66,7 @@ export default function Search({ userInput, setUserInput, filter, setFilter }: P
             id='demo-simple-select-helper-label'
             sx={{ fontFamily: 'nunito' }}
           >
-           Filter
+            By Filter
           </InputLabel>
           <Select
             labelId='demo-simple-select-helper-label'
@@ -89,7 +88,7 @@ export default function Search({ userInput, setUserInput, filter, setFilter }: P
               <MenuItem
                 sx={{ fontFamily: 'nunito' }}
                 onClick={() => {
-                  dispatch(fetchProductsData());
+                  dispatch(fetchByFilter(filterName));
                 }}
                 key={filterName}
               >

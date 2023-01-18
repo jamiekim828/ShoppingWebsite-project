@@ -1,30 +1,19 @@
 import TextField from "@mui/material/TextField";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../../redux/store";
+import { RootState } from "../../redux/store";
 import { actions } from "../../redux/slice/product"; 
-
-
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { fetchProductsData } from "../../redux/thunk/product";
 
 type PropType = {
   userInput: string;
   setUserInput: React.Dispatch<React.SetStateAction<string>>;
-  filter : string;
-  setFilter : React.Dispatch<React.SetStateAction<string>>;
 };
 
 
-export default function Search({ userInput, setUserInput, filter, setFilter }: PropType) {
-  const dispatch = useDispatch<AppDispatch>();
+export default function Search({ userInput, setUserInput }: PropType) {
+  const dispatch = useDispatch();
   const productsList = useSelector(
     (state: RootState) => state.product.productList
   );
-    
-  
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
@@ -43,11 +32,6 @@ export default function Search({ userInput, setUserInput, filter, setFilter }: P
   const handleChange = (event: SelectChangeEvent) => {
     setFilter(event.target.value);
   };
-  const filterArray = [
-    'Name',
-    'Categiry',
-    'Price',
-  ];
 
   return (
     <div>
@@ -67,33 +51,33 @@ export default function Search({ userInput, setUserInput, filter, setFilter }: P
             id='demo-simple-select-helper-label'
             sx={{ fontFamily: 'nunito' }}
           >
-           Filter
+            By Region
           </InputLabel>
           <Select
             labelId='demo-simple-select-helper-label'
             id='demo-simple-select-helper'
-            value={filter}
-            label='filter'
+            value={region}
+            label='Region'
             onChange={handleChange}
           >
             <MenuItem
               sx={{ fontFamily: 'nunito' }}
               value=''
               onClick={() => {
-                dispatch(fetchProductsData());
+                dispatch(fetchCountyData());
               }}
             >
               <em>All</em>
             </MenuItem>
-            {filterArray.map((filterName) => (
+            {regionArray.map((regionName) => (
               <MenuItem
                 sx={{ fontFamily: 'nunito' }}
                 onClick={() => {
-                  dispatch(fetchProductsData());
+                  dispatch(fetchByRegion(regionName));
                 }}
-                key={filterName}
+                key={regionName}
               >
-                {filterName}
+                {regionName}
               </MenuItem>
             ))}
           </Select>

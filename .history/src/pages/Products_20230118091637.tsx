@@ -9,7 +9,7 @@ const Products = () => {
   return (
     <div className="product">
       <Search userInput={userInput} setUserInput={setUserInput} filter = {filter} setFilter = {setFilter}/>
-      <ProductsList userInput={userInput}/>
+      <ProductsList userInput={userInput} filter={filter}/>
     </div>
   );
 };

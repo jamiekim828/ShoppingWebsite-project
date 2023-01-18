@@ -1,7 +1,7 @@
 import { AppDispatch } from '../store';
 import { actions } from '../slice/product';
 
-const url = 'https://fakestoreapi.com';
+const url = ' https://fakestoreapi.com/products';
 
 // fetch All products
 export function fetchProductsData() {

@@ -52,7 +52,7 @@ export default function CountriesItem ({ product }: PropType) {
               src={product.image}
             />
               <Typography variant="caption" color="text.secondary">
-                <b>price : ${product.price}</b>
+                <h2>Price : ${product.price}</h2>
               </Typography>
               <Typography variant="caption" color="text.secondary">
                  Rating : {product.rating.count}

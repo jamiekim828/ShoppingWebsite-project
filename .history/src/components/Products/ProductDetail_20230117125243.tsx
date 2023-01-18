@@ -9,7 +9,9 @@ import {
     Tooltip,
   } from "@mui/material";
   import Typography from '@mui/material/Typography';
+  import Link from "@mui/material/Link";
   import { red } from "@mui/material/colors";
+  import LocationOnIcon from "@mui/icons-material/LocationOn";
   import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
   
   import { Link as RouterLink } from "react-router-dom";

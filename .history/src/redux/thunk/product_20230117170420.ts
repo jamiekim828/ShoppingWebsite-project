@@ -14,11 +14,11 @@ export function fetchProductsData() {
 }
 
 // fetch one product by id
-export function fetchOneProductData(id: number) {
+/*export function fetchOneProductData(id: number) {
   return async (dispatch: AppDispatch) => {
     const response = await fetch(`${url}/${id}`);
     const productDetail = await response.json();
 
     dispatch(actions.getProductDetail(productDetail));
   };
-}
+}*/

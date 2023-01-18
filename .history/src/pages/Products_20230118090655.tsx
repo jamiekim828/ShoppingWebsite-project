@@ -8,8 +8,8 @@ const Products = () => {
 
   return (
     <div className="product">
-      <Search userInput={userInput} setUserInput={setUserInput} filter = {filter} setFilter = {setFilter}/>
-      <ProductsList userInput={userInput}/>
+      <Search userInput={userInput} setUserInput={setUserInput} />
+      <ProductsList userInput={userInput} />
     </div>
   );
 };

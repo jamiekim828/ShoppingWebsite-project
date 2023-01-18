@@ -1,12 +1,12 @@
 import { AppDispatch } from '../store';
 import { actions } from '../slice/product';
 
-const url = 'https://fakestoreapi.com';
+const url = ' https://fakestoreapi.com/products';
 
 // fetch All products
 export function fetchProductsData() {
   return async (dispatch: AppDispatch) => {
-    const response = await fetch(`${url}/products`);
+    const response = await fetch(url);
     const productsData = await response.json();
 
     dispatch(actions.getProductList(productsData));

@@ -10,11 +10,11 @@ import { RootState, AppDispatch } from "../../redux/store";
 
 type PropType = {
   userInput: string;
-  
+  filter : string;
 };
 
 
-export default function ProductList({ userInput }: PropType) {
+export default function ProductList({ userInput, filter }: PropType) {
   const productsList = useSelector(
     (state: RootState) => state.product.productList
   );
