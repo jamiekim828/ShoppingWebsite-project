@@ -28,7 +28,9 @@ export default function HomePage() {
 
   // add favorite
   const favoriteHandler = (product: ProductType) => {
-    const duplicate = wishList.some((item) => item.id === product.id);
+    const duplicate = wishList.some(
+      (item: ProductType) => item.id === product.id
+    );
 
     if (!duplicate) {
       dispatch(actions.addWishList(product));

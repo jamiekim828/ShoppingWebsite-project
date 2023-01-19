@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { Link } from 'react-router-dom';
-import logo from '../Assets/logo.png';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,7 +13,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Switch } from '@mui/material';
 import AppsIcon from '@mui/icons-material/Apps';
+
 import { ProductType } from '../../types/type';
+import logo from '../Assets/logo.png';
 
 export default function Navbar() {
   const [mode, setMode] = useState(false);
@@ -25,18 +26,24 @@ export default function Navbar() {
   });
 
   const wishList = useSelector((state: RootState) => state.product.wishList);
-  const cart = useSelector((state: RootState) => state.product.cart);
-  const cartStorage = JSON.parse(localStorage.getItem('cart') || '{}');
+  const cartStorage = useSelector((state: RootState) => state.product.cart);
   const quantity = cartStorage.map((item: ProductType) => item.quantity);
   const totalQuantity = quantity.reduce((a: number, b: number) => a + b, 0);
+
   return (
     <div>
       <ThemeProvider theme={theme}>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position='static'>
             <Toolbar>
-            <Link to='/'>
-              <img src={logo} alt='logo' height='80px' width='80px' />
+              <Link to='/'>
+                <img
+                  src={logo}
+                  alt='logo'
+                  height='80px'
+                  width='80px'
+                  style={{ marginTop: '10px' }}
+                />
               </Link>
               <Box sx={{ flexGrow: 20 }} />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

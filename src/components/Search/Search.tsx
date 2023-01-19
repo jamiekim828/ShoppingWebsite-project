@@ -1,14 +1,15 @@
-import TextField from '@mui/material/TextField';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../../redux/store';
-import { actions } from '../../redux/slice/product';
+
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { fetchProductsData } from '../../redux/thunk/product';
+import TextField from '@mui/material/TextField';
 
 import './Search.css';
+import { actions } from '../../redux/slice/product';
+import { RootState, AppDispatch } from '../../redux/store';
+import { fetchProductsData } from '../../redux/thunk/product';
 
 type PropType = {
   userInput: string;

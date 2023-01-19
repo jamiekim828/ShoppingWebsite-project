@@ -1,8 +1,8 @@
-import { Box } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
-
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { Box } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import ProductsItem from './ProductsItem';
 import { fetchProductsData } from '../../redux/thunk/product';

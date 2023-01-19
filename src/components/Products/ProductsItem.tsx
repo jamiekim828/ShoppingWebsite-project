@@ -18,13 +18,6 @@ type PropType = {
   product: ProductType;
 };
 export default function ProductsItem({ product }: PropType) {
-  const favoriteState = useSelector(
-    (state: RootState) => state.product.wishList
-  );
-  const favoriteResult = favoriteState.some(
-    (item) => item.title === product.title
-  );
-
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -41,15 +34,6 @@ export default function ProductsItem({ product }: PropType) {
     setOpen(false);
   };
 
-  const favoriteClickHandler = () => {
-    if (favoriteResult) {
-      dispatch(actions.removeWishList(product.title));
-    } else {
-      dispatch(actions.addWishList(product));
-      handleClick();
-    }
-  };
-
   // navigtate
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -62,7 +46,9 @@ export default function ProductsItem({ product }: PropType) {
   const wishList = useSelector((state: RootState) => state.product.wishList);
   localStorage.setItem('wishlist', JSON.stringify(wishList));
   const favoriteHandler = (item: ProductType) => {
-    const duplicate = wishList.some((item) => item.id === product.id);
+    const duplicate = wishList.some(
+      (item: ProductType) => item.id === product.id
+    );
 
     if (!duplicate) {
       dispatch(actions.addWishList(product));
@@ -72,10 +58,8 @@ export default function ProductsItem({ product }: PropType) {
   };
 
   // add to cart
-  const cart = useSelector((state: RootState) => state.product.cart);
   const addToCart = (product: ProductType) => {
     dispatch(actions.addCart(product));
-    localStorage.setItem('cart', JSON.stringify(cart));
   };
 
   return (
@@ -139,7 +123,7 @@ export default function ProductsItem({ product }: PropType) {
             <FavoriteIcon
               sx={
                 wishList.some((i) => i.id === product.id)
-                  ? { color: 'red' }
+                  ? { color: '#ff80ab' }
                   : { color: 'gray' }
               }
               onClick={() => favoriteHandler(product)}

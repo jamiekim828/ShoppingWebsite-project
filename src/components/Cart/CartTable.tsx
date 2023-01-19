@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from 'react-redux';
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,35 +10,46 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 import { ProductType } from '../../types/type';
-import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { actions } from '../../redux/slice/product';
 
 // row data create function
-function createData(image: string, title: string, id: number, price: number) {
-  return { image, title, id, price };
+function createData(
+  image: string,
+  title: string,
+  id: number,
+  price: number,
+  description: string,
+  category: string,
+  rating: { rate: number; count: number },
+  quantity: number
+) {
+  return { image, title, id, price, description, category, rating, quantity };
 }
 
 export default function CartTable() {
-  // cart
-  const cartList = JSON.parse(localStorage.getItem('cart') || '{}');
-
   // add to cart
   const cart = useSelector((state: RootState) => state.product.cart);
   const addToCart = (product: ProductType) => {
     dispatch(actions.addCart(product));
-    localStorage.setItem('cart', JSON.stringify(cart));
   };
 
   const emptyCart = (product: ProductType) => {
     dispatch(actions.removeCart(product));
-    localStorage.setItem('cart', JSON.stringify(cart));
   };
-  console.log(cartList, cart);
 
   // MUI table rows
-  const rows = cartList.map((item: ProductType) =>
-    createData(item.image, item.title, item.id, item.price)
+  const rows = cart.map((item) =>
+    createData(
+      item.image,
+      item.title,
+      item.id,
+      item.price,
+      item.description,
+      item.category,
+      item.rating,
+      item.quantity
+    )
   );
 
   const dispatch = useDispatch<AppDispatch>();
@@ -54,7 +67,7 @@ export default function CartTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((item: ProductType) => (
+            {rows.map((item) => (
               <TableRow
                 key={item.id}
                 sx={{

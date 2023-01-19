@@ -49,11 +49,9 @@ export default function ProductCard() {
   }
 
   // add to cart
-  const cart = useSelector((state: RootState) => state.product.cart);
   const addToCart = (product: ProductType) => {
     dispatch(actions.addCart(product));
   };
-  localStorage.setItem('cart', JSON.stringify(cart));
 
   // MUI
   const breadcrumbs = [
@@ -119,13 +117,14 @@ export default function ProductCard() {
               IN STORE AVAILABLITY
             </div>
             <div>
-              <button className='addtobag-btn'
-              onClick={() => {
-                addToCart(productDetail);
-              }}
+              <button
+                className='addtobag-btn'
+                onClick={() => {
+                  addToCart(productDetail);
+                }}
               >
-                ADD TO BAG</button>
-              
+                ADD TO BAG
+              </button>
             </div>
             <div className='freeshipping-info'>
               Free shipping on orders over 100 EUR

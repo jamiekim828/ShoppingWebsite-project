@@ -1,14 +1,15 @@
 import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-import { ProductType } from '../../types/type';
-
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 
 import './Cart.css';
 import CartTable from './CartTable';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { ProductType } from '../../types/type';
 
 export default function Cart() {
-  const cart = JSON.parse(localStorage.getItem('cart') || '{}');
+  const cart = useSelector((state: RootState) => state.product.cart);
   const quantity = cart.map((item: ProductType) => item.quantity);
   const totalQuantity = quantity.reduce((a: number, b: number) => a + b, 0);
   const priceSum = cart.map((item: ProductType) => item.quantity * item.price);
