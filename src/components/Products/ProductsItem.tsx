@@ -7,7 +7,6 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Rating from '@mui/material/Rating';
 
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -41,6 +40,7 @@ export default function ProductsItem({ product }: PropType) {
     }
     setOpen(false);
   };
+
   const favoriteClickHandler = () => {
     if (favoriteResult) {
       dispatch(actions.removeWishList(product.title));
