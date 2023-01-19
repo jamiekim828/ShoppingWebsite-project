@@ -11,7 +11,6 @@ import { ProductType } from '../../types/type';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { actions } from '../../redux/slice/product';
-import { useSelect } from '@mui/base';
 
 // row data create function
 function createData(image: string, title: string, id: number, price: number) {
@@ -21,14 +20,20 @@ function createData(image: string, title: string, id: number, price: number) {
 export default function CartTable() {
   // cart
   const cartList = JSON.parse(localStorage.getItem('cart') || '{}');
-  const cartFromState = useSelector((state: RootState) => state.product.cart);
-  console.log(cartList, cartFromState);
-  // const addQuantity = (product: ProductType) => {
-  //   const index = cartList.findIndex(
-  //     (item: ProductType) => (item.id = product.id)
-  //   );
-  //   cartList[index].quantity += 1;
-  // };
+
+  // add to cart
+  const cart = useSelector((state: RootState) => state.product.cart);
+  const addToCart = (product: ProductType) => {
+    dispatch(actions.addCart(product));
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+
+  const emptyCart = (product: ProductType) => {
+    dispatch(actions.removeCart(product));
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+  console.log(cartList, cart);
+
   // MUI table rows
   const rows = cartList.map((item: ProductType) =>
     createData(item.image, item.title, item.id, item.price)
@@ -70,7 +75,7 @@ export default function CartTable() {
                   <Button
                     sx={{ width: '100px', color: '#9e9e9e' }}
                     onClick={() => {
-                      dispatch(actions.removeCart(item));
+                      emptyCart(item);
                     }}
                   >
                     Remove
@@ -93,7 +98,7 @@ export default function CartTable() {
                     <button
                       className='add-btn'
                       onClick={() => {
-                        dispatch(actions.addCart(item));
+                        addToCart(item);
                       }}
                     >
                       +
