@@ -158,7 +158,8 @@ export default function WishList() {
                                               {product.rating.rate}
                                           </Typography>
                                       </Grid>
-                                      <Grid item>
+                                      <Grid>
+                                      {product.title}
                                           <Typography
                                               sx={{
                                                   cursor: 'pointer',
@@ -167,8 +168,7 @@ export default function WishList() {
                                               }}
                                               variant='body2'
                                               onClick={() => {
-                                                  handleRemove(product.title);
-                                                  handleClick();
+                                                dispatch(actions.removeWishList(product));
                                               }}
                                           >
                                               REMOVE
