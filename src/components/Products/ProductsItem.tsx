@@ -168,7 +168,7 @@ export default function ProductsItem({ product }: PropType) {
             <Alert
               onClose={handleClose}
               severity='success'
-              sx={{ width: '100%' }}
+              sx={{ width: '100%', backgroundColor:"#e18728"}}
             >
               {product.title.slice(0, 10)} is removed to the wishlist
             </Alert>
