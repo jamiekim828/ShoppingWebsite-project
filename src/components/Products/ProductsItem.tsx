@@ -138,7 +138,7 @@ export default function ProductsItem({ product }: PropType) {
               addToCart(product);
             }}
           >
-            <AddShoppingCartIcon sx={{ color: 'gray' }} />
+            <AddShoppingCartIcon sx={{ color: '#212121' }} />
           </IconButton>
         </Tooltip>
 

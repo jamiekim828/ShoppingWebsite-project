@@ -53,10 +53,12 @@ export default function Search({
     searchHandler();
   };
 
-  const category = productsList.map((item) => item.category);
-  const categoryList = category.filter((c, index) => {
-    return category.indexOf(c) === index;
-  });
+  const categoryList = [
+    "women's clothing",
+    "men's clothing",
+    'jewelry',
+    'electronics',
+  ];
 
   return (
     <div className='search-container'>
@@ -93,14 +95,28 @@ export default function Search({
                 dispatch(actions.sortByName(productsList));
               }}
             >
-              Name
+              Name A-Z
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                dispatch(actions.sortByNameDecending(productsList));
+              }}
+            >
+              Name Z-A
             </MenuItem>
             <MenuItem
               onClick={() => {
                 dispatch(actions.sortByPrice(productsList));
               }}
             >
-              Price
+              Price low to high
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                dispatch(actions.sortByPriceHighToLow(productsList));
+              }}
+            >
+              Price high to low
             </MenuItem>
             {categoryList.map((c) => (
               <MenuItem
