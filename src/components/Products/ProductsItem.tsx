@@ -7,6 +7,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Rating from '@mui/material/Rating';
 
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,8 +18,14 @@ import { actions } from '../../redux/slice/product';
 type PropType = {
   product: ProductType;
 };
-export default function ProductItem({ product }: PropType) {
-  // MUI
+export default function ProductsItem({ product }: PropType) {
+  const favoriteState = useSelector(
+    (state: RootState) => state.product.wishList
+  );
+  const favoriteResult = favoriteState.some(
+    (item) => item.title === product.title
+  );
+
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -137,7 +144,7 @@ export default function ProductItem({ product }: PropType) {
             aria-label='add to cart'
             onClick={() => addToCart(product)}
           >
-            <AddShoppingCartIcon sx={{ color: '#2196f3' }} />
+            <AddShoppingCartIcon sx={{ color: 'gray' }} />
           </IconButton>
         </Tooltip>
 
