@@ -151,6 +151,7 @@ export default function HomeMidpart({
                             zIndex: 2,
                             marginLeft: '5px',
                             cursor: 'pointer',
+                            color: '#ff80ab',
                           }}
                           onClick={() => {
                             favoriteHandler(item);
@@ -162,6 +163,7 @@ export default function HomeMidpart({
                             zIndex: 2,
                             marginLeft: '5px',
                             cursor: 'pointer',
+                            color: '#ff80ab',
                           }}
                           onClick={() => {
                             favoriteHandler(item);

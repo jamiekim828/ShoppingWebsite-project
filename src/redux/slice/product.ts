@@ -91,10 +91,10 @@ const productSlice = createSlice({
         (item) => item.id === action.payload.id
       );
 
-      if (index !== -1) {
+      if (index !== -1 && state.cart[index].quantity >= 1) {
         state.cart[index].quantity -= 1;
       }
-      if (state.cart[index].quantity === 1) {
+      if (state.cart[index].quantity < 1) {
         state.cart.splice(index, 1);
       }
     },
@@ -103,7 +103,6 @@ const productSlice = createSlice({
         (item) => item.id === action.payload.id
       );
       state.cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(state.cart));
     },
   },
 });

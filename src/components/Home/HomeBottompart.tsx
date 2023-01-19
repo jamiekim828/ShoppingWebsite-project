@@ -16,6 +16,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 // file
 import { ProductType } from '../../types/type';
+import img from '../Assets/sf.png';
+import photo1 from '../Assets/1.png';
+import photo2 from '../Assets/2.png';
+import photo3 from '../Assets/3.png';
 
 // MUI Typography
 const Div = styled('div')(({ theme }) => ({
@@ -101,14 +105,24 @@ export default function HomeBottompart({
                   <div>
                     {wishList.some((i) => i.id === item.id) ? (
                       <FavoriteIcon
-                        sx={{ zIndex: 1, marginLeft: '5px', cursor: 'pointer' }}
+                        sx={{
+                          zIndex: 1,
+                          marginLeft: '5px',
+                          cursor: 'pointer',
+                          color: '#ff80ab',
+                        }}
                         onClick={() => {
                           favoriteHandler(item);
                         }}
                       />
                     ) : (
                       <FavoriteBorderIcon
-                        sx={{ zIndex: 2, marginLeft: '5px', cursor: 'pointer' }}
+                        sx={{
+                          zIndex: 2,
+                          marginLeft: '5px',
+                          cursor: 'pointer',
+                          color: '#ff80ab',
+                        }}
                         onClick={() => {
                           favoriteHandler(item);
                         }}
@@ -177,6 +191,11 @@ export default function HomeBottompart({
       >
         View gallery
       </Button>
+      <Div className='your-photo'>
+        <img src={photo1} alt='1' />
+        <img src={photo2} alt='2' />
+        <img src={photo3} alt='3' />
+      </Div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>ADD YOU PHOTO</DialogTitle>
         <DialogContent sx={{ marginBottom: '70px', textAlign: 'center' }}>
@@ -186,9 +205,19 @@ export default function HomeBottompart({
           <DialogContentText>
             Take what we make and make it yours.
           </DialogContentText>
+          <img
+            src={img}
+            alt='drag'
+            style={{ width: '300px', marginTop: '30px' }}
+          />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Computer</Button>
+        <DialogActions
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            paddingLeft: '30px',
+          }}
+        >
           <Button onClick={handleClose}>Facebook</Button>
           <Button onClick={handleClose}>Instagram</Button>
           <Button
