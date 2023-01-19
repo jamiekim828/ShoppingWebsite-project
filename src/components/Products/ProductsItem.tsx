@@ -9,9 +9,10 @@ import Rating from '@mui/material/Rating';
 
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
 import { fetchOneProductData } from '../../redux/thunk/product';
+import { actions } from '../../redux/slice/product';
 
 type PropType = {
   product: ProductType;
@@ -40,6 +41,19 @@ export default function CountriesItem({ product }: PropType) {
   const toDetail = (p: ProductType) => {
     dispatch(fetchOneProductData(p.id));
     navigate(`/products/${p.id}`);
+  };
+
+  // favorite
+  const wishList = useSelector((state: RootState) => state.product.wishList);
+  localStorage.setItem('wishlist', JSON.stringify(wishList));
+  const favoriteHandler = (item: ProductType) => {
+    const duplicate = wishList.some((item) => item.id === product.id);
+
+    if (!duplicate) {
+      dispatch(actions.addWishList(product));
+    } else {
+      dispatch(actions.removeWishList(product));
+    }
   };
 
   return (
@@ -100,7 +114,14 @@ export default function CountriesItem({ product }: PropType) {
       <div className='icons'>
         <Tooltip title='Add favorite'>
           <IconButton aria-label='add to favorites' onClick={handleClick}>
-            <FavoriteIcon sx={{ color: 'gray' }} />
+            <FavoriteIcon
+              sx={
+                wishList.some((i) => i.id === product.id)
+                  ? { color: 'red' }
+                  : { color: 'gray' }
+              }
+              onClick={() => favoriteHandler(product)}
+            />
           </IconButton>
         </Tooltip>
 
@@ -121,15 +142,27 @@ export default function CountriesItem({ product }: PropType) {
             MORE
           </Button>
         </Tooltip>
-        <Snackbar open={open} autoHideDuration={1500} onClose={handleClose}>
-          <Alert
-            onClose={handleClose}
-            severity='success'
-            sx={{ width: '100%' }}
-          >
-            {product.title.slice(0, 10)} is added to the wishlist
-          </Alert>
-        </Snackbar>
+        {wishList.some((i) => i.id === product.id) ? (
+          <Snackbar open={open} autoHideDuration={1500} onClose={handleClose}>
+            <Alert
+              onClose={handleClose}
+              severity='success'
+              sx={{ width: '100%' }}
+            >
+              {product.title.slice(0, 10)} is added to the wishlist
+            </Alert>
+          </Snackbar>
+        ) : (
+          <Snackbar open={open} autoHideDuration={1500} onClose={handleClose}>
+            <Alert
+              onClose={handleClose}
+              severity='success'
+              sx={{ width: '100%' }}
+            >
+              {product.title.slice(0, 10)} is removed to the wishlist
+            </Alert>
+          </Snackbar>
+        )}
       </div>
     </Box>
   );

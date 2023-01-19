@@ -28,7 +28,6 @@ export default function ProductCard() {
     (item: ProductType) => item.id === productId
   );
   const productDetail = productById[0];
-  console.log(productDetail);
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
