@@ -115,16 +115,25 @@ button {
 
 .shopmore {
   text-align: left;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
 }
 
 .shopmore a {
   text-decoration: none;
-  color: royalblue;
+  color: black;
   font-weight: 800;
+  margin-left: 5px;
 }
 
 .quantity-check {
   flex: 3;
   display: flex;
   align-items: center;
+}
+
+.total-price {
+  display: flex;
+  justify-content: space-between;
 }
