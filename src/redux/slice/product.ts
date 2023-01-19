@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { ProductType } from '../../types/type';
+import { fetchProductsData } from '../thunk/product';
 
 type InitialStateType = {
   productList: ProductType[];
@@ -54,6 +55,20 @@ const productSlice = createSlice({
       );
       state.productList = sorted;
     },
+    sortByNameDecending: (state, action) => {
+      const sorted = [...action.payload].sort(
+        (a: ProductType, b: ProductType) => {
+          if (a.title > b.title) {
+            return -1;
+          }
+          if (a.title < b.title) {
+            return 1;
+          }
+          return 0;
+        }
+      );
+      state.productList = sorted;
+    },
     sortByPrice: (state, action) => {
       const sorted = [...action.payload].sort(
         (a: ProductType, b: ProductType) => {
@@ -61,6 +76,20 @@ const productSlice = createSlice({
             return -1;
           }
           if (a.price > b.price) {
+            return 1;
+          }
+          return 0;
+        }
+      );
+      state.productList = sorted;
+    },
+    sortByPriceHighToLow: (state, action) => {
+      const sorted = [...action.payload].sort(
+        (a: ProductType, b: ProductType) => {
+          if (a.price > b.price) {
+            return -1;
+          }
+          if (a.price < b.price) {
             return 1;
           }
           return 0;

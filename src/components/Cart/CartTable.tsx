@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Table from '@mui/material/Table';
@@ -8,6 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import { ProductType } from '../../types/type';
 import { AppDispatch, RootState } from '../../redux/store';
@@ -27,7 +30,33 @@ function createData(
   return { image, title, id, price, description, category, rating, quantity };
 }
 
+// alert function
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref
+) {
+  return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
+});
+
 export default function CartTable() {
+  // alert
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   // add to cart
   const cart = useSelector((state: RootState) => state.product.cart);
   const addToCart = (product: ProductType) => {
@@ -84,15 +113,30 @@ export default function CartTable() {
 
                 <TableCell className='cart-title' sx={{ height: '80px' }}>
                   {item.title.slice(0, 25)}
+                  <br />
                   ITEM NO. {item.id}
                   <Button
                     sx={{ width: '100px', color: '#9e9e9e' }}
                     onClick={() => {
                       emptyCart(item);
+                      handleClick();
                     }}
                   >
                     Remove
                   </Button>
+                  <Snackbar
+                    open={open}
+                    autoHideDuration={6000}
+                    onClose={handleClose}
+                  >
+                    <Alert
+                      onClose={handleClose}
+                      severity='success'
+                      sx={{ width: '100%' }}
+                    >
+                      ITEM No.{item.id} is removed from the card.
+                    </Alert>
+                  </Snackbar>
                 </TableCell>
 
                 <TableCell sx={{}}>
