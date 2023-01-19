@@ -152,7 +152,6 @@ export default function ProductsItem({ product }: PropType) {
             aria-label='add to cart'
             onClick={() => {
               addToCart(product);
-              dispatch(actions.addCart(product));
             }}
           >
             <AddShoppingCartIcon sx={{ color: 'gray' }} />

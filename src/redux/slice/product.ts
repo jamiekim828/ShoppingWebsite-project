@@ -75,16 +75,15 @@ const productSlice = createSlice({
       state.productList = filter;
     },
     addCart: (state, action) => {
-      const cartList = JSON.parse(localStorage.getItem('cart') || '{}');
-      const index = cartList.findIndex(
+      const index = state.cart.findIndex(
         (item: ProductType) => item.id === action.payload.id
       );
       const newProduct = { ...action.payload, quantity: 1 };
 
       if (index !== -1) {
-        cartList[index].quantity += 1;
+        state.cart[index].quantity += 1;
       } else {
-        cartList.push(newProduct);
+        state.cart.push(newProduct);
       }
     },
     deleteCart: (state, action) => {
