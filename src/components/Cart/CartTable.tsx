@@ -1,5 +1,3 @@
-import React from 'react';
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,8 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { ProductType } from '../../types/type';
 
 // row data create function
 function createData(image: string, title: string, id: number, price: number) {
@@ -19,30 +16,15 @@ function createData(image: string, title: string, id: number, price: number) {
 
 export default function CartTable() {
   // cart
-  // const cartList = useSelector((state: RootState) => state.product.cart);
-  const cartList = [
-    {
-      id: 1,
-      title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-      price: 109.95,
-      description:
-        'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
-      category: "men's clothing",
-      image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-      rating: {
-        rate: 3.9,
-        count: 120,
-      },
-    },
-  ];
+  const cartList = JSON.parse(localStorage.getItem('cart') || '{}');
 
   // MUI table rows
-  const rows = cartList.map((item) =>
+  const rows = cartList.map((item: ProductType) =>
     createData(item.image, item.title, item.id, item.price)
   );
 
   return (
-    <div>
+    <div className='tablediv'>
       <TableContainer component={Paper} sx={{ marginTop: '30px' }}>
         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
           <TableHead>
@@ -53,13 +35,13 @@ export default function CartTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {rows.map((row: ProductType) => (
               <TableRow
                 key={row.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                {rows.map((item) => (
-                  <div className='row'>
+                {rows.map((item: ProductType) => (
+                  <div className='row' key={item.id}>
                     <TableCell>
                       <img
                         src={`${item.image}`}
@@ -82,6 +64,7 @@ export default function CartTable() {
                       }}
                     >
                       <Button sx={{ width: '25px', height: '50px' }}>-</Button>
+
                       <Button sx={{ width: '25px', height: '50px' }}>+</Button>
                     </TableCell>
                     <TableCell>$ {item.price}</TableCell>

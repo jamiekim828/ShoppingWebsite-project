@@ -37,9 +37,6 @@ const productSlice = createSlice({
       );
       state.wishList = filter;
     },
-    addCart: (state, action) => {
-      state.cart.push(action.payload);
-    },
     showLoadingToggle: (state, action) => {
       state.showLoading = action.payload;
     },
@@ -76,6 +73,30 @@ const productSlice = createSlice({
         (product) => product.category === action.payload
       );
       state.productList = filter;
+    },
+    addCart: (state, action) => {
+      const index = state.cart.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      const newProduct = { ...action.payload, quantity: 1 };
+
+      if (index !== -1) {
+        state.cart[index].quantity += 1;
+      } else {
+        state.cart.push(newProduct);
+      }
+    },
+    deleteCart: (state, action) => {
+      const index = state.cart.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      if (index !== -1) {
+        state.cart[index].quantity -= 1;
+      }
+      if (state.cart[index].quantity === 1) {
+        state.cart.splice(index, 1);
+      }
     },
   },
 });

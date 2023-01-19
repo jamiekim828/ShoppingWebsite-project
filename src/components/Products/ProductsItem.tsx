@@ -56,6 +56,13 @@ export default function CountriesItem({ product }: PropType) {
     }
   };
 
+  // add to cart
+  const cart = useSelector((state: RootState) => state.product.cart);
+  const addToCart = (product: ProductType) => {
+    dispatch(actions.addCart(product));
+  };
+  localStorage.setItem('cart', JSON.stringify(cart));
+
   return (
     <Box
       key={product.id}
@@ -126,8 +133,11 @@ export default function CountriesItem({ product }: PropType) {
         </Tooltip>
 
         <Tooltip title='Add to cart'>
-          <IconButton aria-label='add to cart' onClick={handleClick}>
-            <AddShoppingCartIcon sx={{ color: 'gray' }} />
+          <IconButton
+            aria-label='add to cart'
+            onClick={() => addToCart(product)}
+          >
+            <AddShoppingCartIcon sx={{ color: '#2196f3' }} />
           </IconButton>
         </Tooltip>
 

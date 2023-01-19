@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
@@ -10,6 +9,7 @@ import CartTable from './CartTable';
 
 export default function Cart() {
   const cart = useSelector((state: RootState) => state.product.cart);
+  console.log(cart);
   return (
     <div className='cart-div'>
       <div className='cart-list'>
@@ -30,6 +30,9 @@ export default function Cart() {
           </button>
         </div>
         <CartTable />
+        <div className='shopmore'>
+          <a href='/products'>Shop more</a>
+        </div>
       </div>
       <div className='price-list'>
         <div className='signup'>

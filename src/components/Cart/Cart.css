@@ -54,6 +54,10 @@
   width: 32%;
 }
 
+.tablediv {
+  margin-bottom: 20px;
+}
+
 .signup {
   text-transform: uppercase;
   color: white;
@@ -107,4 +111,14 @@ button {
   display: flex;
   flex-direction: column;
   width: 130px;
+}
+
+.shopmore {
+  text-align: left;
+}
+
+.shopmore a {
+  text-decoration: none;
+  color: royalblue;
+  font-weight: 800;
 }
