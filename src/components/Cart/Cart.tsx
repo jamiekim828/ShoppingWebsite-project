@@ -9,8 +9,6 @@ import CartTable from './CartTable';
 
 export default function Cart() {
   const cart = JSON.parse(localStorage.getItem('cart') || '{}');
-  console.log(cart);
-
   const quantity = cart.map((item: ProductType) => item.quantity);
   const totalQuantity = quantity.reduce((a: number, b: number) => a + b, 0);
   const priceSum = cart.map((item: ProductType) => item.quantity * item.price);

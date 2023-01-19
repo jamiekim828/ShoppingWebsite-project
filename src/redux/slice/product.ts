@@ -103,7 +103,6 @@ const productSlice = createSlice({
         (item) => item.id === action.payload.id
       );
       state.cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(state.cart));
     },
   },
 });

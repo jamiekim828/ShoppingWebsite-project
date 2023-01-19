@@ -75,8 +75,8 @@ export default function ProductsItem({ product }: PropType) {
   const cart = useSelector((state: RootState) => state.product.cart);
   const addToCart = (product: ProductType) => {
     dispatch(actions.addCart(product));
+    localStorage.setItem('cart', JSON.stringify(cart));
   };
-  localStorage.setItem('cart', JSON.stringify(cart));
 
   return (
     <Box

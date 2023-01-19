@@ -23,6 +23,12 @@ export default function CartTable() {
   const cartList = JSON.parse(localStorage.getItem('cart') || '{}');
   const cartFromState = useSelector((state: RootState) => state.product.cart);
   console.log(cartList, cartFromState);
+  // const addQuantity = (product: ProductType) => {
+  //   const index = cartList.findIndex(
+  //     (item: ProductType) => (item.id = product.id)
+  //   );
+  //   cartList[index].quantity += 1;
+  // };
   // MUI table rows
   const rows = cartList.map((item: ProductType) =>
     createData(item.image, item.title, item.id, item.price)
@@ -71,11 +77,7 @@ export default function CartTable() {
                   </Button>
                 </TableCell>
 
-                <TableCell
-                  sx={{
-                    height: '80px',
-                  }}
-                >
+                <TableCell sx={{}}>
                   <div className='quantity-check'>
                     <button
                       className='delete-btn'
@@ -85,7 +87,9 @@ export default function CartTable() {
                     >
                       -
                     </button>
-                    <div className='cart-quantity'>{item.quantity}</div>
+
+                    <span>{item.quantity}</span>
+
                     <button
                       className='add-btn'
                       onClick={() => {
