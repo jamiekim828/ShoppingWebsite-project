@@ -21,7 +21,7 @@ function App() {
         <Route path='/products/:id' element={<ProductCard />}></Route>
         <Route path='/wish' element={<WishPage />}></Route>
         <Route path='/cart' element={<CartPage />}></Route>
-        </Routes>
+      </Routes>
         <Footer/>
     </div>
   );
