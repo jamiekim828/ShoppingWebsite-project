@@ -122,3 +122,9 @@ button {
   color: royalblue;
   font-weight: 800;
 }
+
+.quantity-check {
+  flex: 3;
+  display: flex;
+  align-items: center;
+}
