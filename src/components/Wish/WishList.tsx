@@ -15,6 +15,7 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 import { AppDispatch, RootState } from '../../redux/store';
 import { actions } from '../../redux/slice/product';
+import oops from "../Assets/oops.jpg";
 
 const Img = styled('img')({
   margin: 'auto',
@@ -79,12 +80,11 @@ export default function WishList() {
           <Paper
             elevation={10}
             sx={{
-              paddingTop: '10%',
-              paddingBottom: '10%',
               fontFamily: 'montserrat',
             }}
           >
-            There is no product in wish list.
+            <img src={oops} alt="earth" height={"250px"}/>
+            <p>There is no product in wish list.</p>
           </Paper>
         </Box>
       ) : (
