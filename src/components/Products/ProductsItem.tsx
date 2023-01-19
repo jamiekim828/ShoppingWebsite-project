@@ -25,7 +25,7 @@ export default function ProductsItem({ product }: PropType) {
   const favoriteResult = favoriteState.some(
     (item) => item.title === product.title
   );
-  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -135,7 +135,6 @@ export default function ProductsItem({ product }: PropType) {
 
       <div className='icons'>
         <Tooltip title='Add favorite'>
-
           <IconButton aria-label='add to favorites' onClick={handleClick}>
             <FavoriteIcon
               sx={
@@ -153,22 +152,11 @@ export default function ProductsItem({ product }: PropType) {
             aria-label='add to cart'
             onClick={() => addToCart(product)}
           >
-            <AddShoppingCartIcon sx={{ color: '#2196f3' }} />
+            <AddShoppingCartIcon sx={{ color: 'gray' }} />
           </IconButton>
         </Tooltip>
 
         <Tooltip title='More info'>
-
-          <Link to={`/products/${product.id}`}>
-            <Button variant='outlined'>MORE</Button>
-          </Link>
-        </Tooltip>
-        <Snackbar open={open} autoHideDuration={1500} onClose={handleClose}>
-          <Alert
-            onClose={handleClose}
-            severity='success'
-            sx={{ width: '100%' }}
-
           <Button
             variant='outlined'
             sx={{ height: '30px', width: '80px', backgroundColor: '#fafafa' }}
