@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+
 import { createTheme, ThemeProvider } from '@mui/material';
 
 import './index.css';
