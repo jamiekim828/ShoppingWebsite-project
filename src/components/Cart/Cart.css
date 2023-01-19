@@ -4,6 +4,7 @@
   padding-left: 6%;
   padding-right: 6%;
   padding-top: 6%;
+  margin-bottom: 70px;
 }
 
 .cart-list {
@@ -100,7 +101,7 @@ button {
 }
 
 .cart-img {
-  width: 90px;
+  width: 80px;
 }
 
 .row {
@@ -111,6 +112,7 @@ button {
   display: flex;
   flex-direction: column;
   width: 130px;
+  align-items: stretch;
 }
 
 .shopmore {
@@ -128,9 +130,13 @@ button {
 }
 
 .quantity-check {
-  flex: 3;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.cart-quantity {
+  width: 20px;
 }
 
 .total-price {

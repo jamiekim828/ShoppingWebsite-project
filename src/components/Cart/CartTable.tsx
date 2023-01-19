@@ -29,57 +29,50 @@ export default function CartTable() {
         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell width='30%'>img</TableCell>
-              <TableCell width='30%' align='left'>
-                NAME
-              </TableCell>
-              <TableCell width='20%' align='left'>
-                QTY
-              </TableCell>
-              <TableCell width='20%' align='left'>
-                PRICE
-              </TableCell>
+              <TableCell></TableCell>
+              <TableCell align='center'>NAME</TableCell>
+              <TableCell align='center'>QTY</TableCell>
+              <TableCell align='center'>PRICE</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((item: ProductType) => (
               <TableRow
                 key={item.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                }}
               >
-                <div className='row' key={item.id}>
-                  <TableCell width='30%'>
-                    <img
-                      src={`${item.image}`}
-                      className='cart-img'
-                      alt='cart-img'
-                    />
-                  </TableCell>
+                <TableCell sx={{ height: '80px', textAlign: 'center' }}>
+                  <img
+                    src={`${item.image}`}
+                    className='cart-img'
+                    alt='cart-img'
+                  />
+                </TableCell>
 
-                  <TableCell className='cart-title' width='30%'>
-                    {item.title.slice(0, 25)}
-                    ITEM NO. {item.id}
-                    <Button sx={{ width: '100px', color: '#9e9e9e' }}>
-                      Remove
-                    </Button>
-                  </TableCell>
+                <TableCell className='cart-title' sx={{ height: '80px' }}>
+                  {item.title.slice(0, 25)}
+                  ITEM NO. {item.id}
+                  <Button sx={{ width: '100px', color: '#9e9e9e' }}>
+                    Remove
+                  </Button>
+                </TableCell>
 
-                  <TableCell
-                    width='20%'
-                    sx={{
-                      display: 'flex',
-                      marginLeft: '30px',
-                      marginRight: '30px',
-                    }}
-                  >
-                    <div className='quantity-check'>
-                      <button className='delete-btn'>-</button>
-                      <div className='cart-quantity'>{item.quantity}</div>
-                      <button className='add-btn'>+</button>
-                    </div>
-                  </TableCell>
-                  <TableCell width='20%'>$ {item.price}</TableCell>
-                </div>
+                <TableCell
+                  sx={{
+                    height: '80px',
+                  }}
+                >
+                  <div className='quantity-check'>
+                    <button className='delete-btn'>-</button>
+                    <div className='cart-quantity'>{item.quantity}</div>
+                    <button className='add-btn'>+</button>
+                  </div>
+                </TableCell>
+                <TableCell sx={{ height: '80px', textAlign: 'center' }}>
+                  $ {item.price}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
