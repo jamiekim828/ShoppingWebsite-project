@@ -63,9 +63,11 @@ export default function CartTable() {
                         marginRight: '30px',
                       }}
                     >
-                      <Button sx={{ width: '25px', height: '50px' }}>-</Button>
-
-                      <Button sx={{ width: '25px', height: '50px' }}>+</Button>
+                      <div className='quantity-check'>
+                        <button className='delete-btn'>-</button>
+                        <div className='cart-quantity'>{item.quantity}</div>
+                        <button className='add-btn'>+</button>
+                      </div>
                     </TableCell>
                     <TableCell>$ {item.price}</TableCell>
                   </div>
