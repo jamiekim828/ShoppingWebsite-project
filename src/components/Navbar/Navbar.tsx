@@ -35,20 +35,20 @@ export default function Navbar() {
               <Box sx={{ flexGrow: 20 }} />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <Link to='/'>
-                  <HomeIcon />
+                  <HomeIcon sx={{ color:"white" }}/>
                 </Link>
               </Box>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <Link to='/products'>
-                  <AppsIcon />
+                  <AppsIcon sx={{ color:"white" }}/>
                 </Link>
               </Box>
               <Box sx={{ flexGrow: 1 }} />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <Link to='/wish'>
                   <Badge badgeContent={wishList.length} color='error'>
-                    <FavoriteIcon />
+                    <FavoriteIcon sx={{ color:"white" }}/>
                   </Badge>
                 </Link>
               </Box>
@@ -56,7 +56,7 @@ export default function Navbar() {
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <Link to='/cart'>
                   <Badge badgeContent={cart.length} color='error'>
-                    <ShoppingCartIcon />
+                    <ShoppingCartIcon sx={{ color:"white" }}/>
                   </Badge>
                 </Link>
               </Box>
