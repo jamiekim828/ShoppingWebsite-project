@@ -7,21 +7,13 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import { Link } from 'react-router-dom';
-import { RootState } from '../../redux/store';
 import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { actions } from '../../redux/slice/product';
 
 type PropType = {
   product: ProductType;
 };
-export default function ProductsItem({ product }: PropType) {
-  const favoriteState = useSelector(
-    (state: RootState) => state.product.wishList
-  );
-  const favoriteResult = favoriteState.some(
-    (item) => item.title === product.title
-  );
+export default function CountriesItem({ product }: PropType) {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleClick = () => {
@@ -35,14 +27,6 @@ export default function ProductsItem({ product }: PropType) {
       return;
     }
     setOpen(false);
-  };
-  const favoriteClickHandler = () => {
-    if (favoriteResult) {
-      dispatch(actions.removeWishList(product.title));
-    } else {
-      dispatch(actions.addWishList(product));
-      handleClick();
-    }
   };
 
   return (
@@ -68,12 +52,9 @@ export default function ProductsItem({ product }: PropType) {
       </Typography>
       <div className='icons'>
         <Tooltip title='Add favorite'>
-        <IconButton
-              aria-label="add to favorites"
-              onClick={favoriteClickHandler}
-            >
-              <FavoriteIcon sx={{ color: favoriteResult ? "red" : "gray" }} />
-            </IconButton>
+          <IconButton aria-label='add to favorites' onClick={handleClick}>
+            <FavoriteIcon sx={{ color: 'gray' }} />
+          </IconButton>
         </Tooltip>
 
         <Tooltip title='Add to cart'>

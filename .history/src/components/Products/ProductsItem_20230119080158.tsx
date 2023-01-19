@@ -20,7 +20,7 @@ export default function ProductsItem({ product }: PropType) {
     (state: RootState) => state.product.wishList
   );
   const favoriteResult = favoriteState.some(
-    (item) => item.title === product.title
+    (item) => item.name.common === product.title
   );
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
