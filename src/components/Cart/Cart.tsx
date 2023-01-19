@@ -2,6 +2,8 @@ import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import { ProductType } from '../../types/type';
 
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+
 import './Cart.css';
 import CartTable from './CartTable';
 
@@ -11,6 +13,8 @@ export default function Cart() {
 
   const quantity = cart.map((item: ProductType) => item.quantity);
   const totalQuantity = quantity.reduce((a: number, b: number) => a + b, 0);
+  const priceSum = cart.map((item: ProductType) => item.quantity * item.price);
+  const totalPrice = priceSum.reduce((a: number, b: number) => a + b, 0);
 
   return (
     <div className='cart-div'>
@@ -32,21 +36,24 @@ export default function Cart() {
           </button>
         </div>
         <CartTable />
-        <div className='shopmore'>
-          <a href='/products'>Shop more</a>
-        </div>
       </div>
       <div className='price-list'>
         <div className='signup'>
           <p>Want free shipping on every order at sim? sign up</p>
         </div>
         <div className='price-div'>
-          <div>Item Subtotal</div>
+          <div className='total-price'>
+            <div>Item Subtotal</div>
+            <div>$ {totalPrice.toFixed(2)}</div>
+          </div>
           <div className='shipping-fee'>
             <p>Estimated Shipping</p>
             <p>FREE</p>
           </div>
-          <div>Estimated Total</div>
+          <div className='total-price'>
+            <div>Estimated Total</div>
+            <div>$ {totalPrice.toFixed(2)}</div>
+          </div>
         </div>
         <div className='checkout-button'>
           <button className='checkout'>CHECKOUT</button>
@@ -57,6 +64,10 @@ export default function Cart() {
               src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/2560px-PayPal.svg.png'
             />
           </button>
+        </div>
+        <div className='shopmore'>
+          <LocalMallIcon />
+          <a href='/products'>Shop more</a>
         </div>
       </div>
     </div>

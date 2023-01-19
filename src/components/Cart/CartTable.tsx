@@ -8,6 +8,10 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 import { ProductType } from '../../types/type';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+import { actions } from '../../redux/slice/product';
+import { useSelect } from '@mui/base';
 
 // row data create function
 function createData(image: string, title: string, id: number, price: number) {
@@ -17,11 +21,14 @@ function createData(image: string, title: string, id: number, price: number) {
 export default function CartTable() {
   // cart
   const cartList = JSON.parse(localStorage.getItem('cart') || '{}');
-
+  const cartFromState = useSelector((state: RootState) => state.product.cart);
+  console.log(cartList, cartFromState);
   // MUI table rows
   const rows = cartList.map((item: ProductType) =>
     createData(item.image, item.title, item.id, item.price)
   );
+
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <div className='tablediv'>
@@ -29,49 +36,69 @@ export default function CartTable() {
         <Table sx={{ minWidth: 650 }} aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell>NAME</TableCell>
-              <TableCell>QTY</TableCell>
-              <TableCell>PRICE</TableCell>
+              <TableCell></TableCell>
+              <TableCell align='center'>NAME</TableCell>
+              <TableCell align='center'>QTY</TableCell>
+              <TableCell align='center'>PRICE</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row: ProductType) => (
+            {rows.map((item: ProductType) => (
               <TableRow
-                key={row.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                key={item.id}
+                sx={{
+                  '&:last-child td, &:last-child th': { border: 0 },
+                }}
               >
-                {rows.map((item: ProductType) => (
-                  <div className='row' key={item.id}>
-                    <TableCell>
-                      <img
-                        src={`${item.image}`}
-                        className='cart-img'
-                        alt='cart-img'
-                      />
-                    </TableCell>
-                    <div className='cart-title'>
-                      <TableCell>{item.title.slice(0, 25)}</TableCell>
-                      <TableCell>ITEM NO. {item.id}</TableCell>
-                      <Button sx={{ width: '100px', color: '#9e9e9e' }}>
-                        Remove
-                      </Button>
-                    </div>
-                    <TableCell
-                      sx={{
-                        display: 'flex',
-                        marginLeft: '30px',
-                        marginRight: '30px',
+                <TableCell sx={{ height: '80px', textAlign: 'center' }}>
+                  <img
+                    src={`${item.image}`}
+                    className='cart-img'
+                    alt='cart-img'
+                  />
+                </TableCell>
+
+                <TableCell className='cart-title' sx={{ height: '80px' }}>
+                  {item.title.slice(0, 25)}
+                  ITEM NO. {item.id}
+                  <Button
+                    sx={{ width: '100px', color: '#9e9e9e' }}
+                    onClick={() => {
+                      dispatch(actions.removeCart(item));
+                    }}
+                  >
+                    Remove
+                  </Button>
+                </TableCell>
+
+                <TableCell
+                  sx={{
+                    height: '80px',
+                  }}
+                >
+                  <div className='quantity-check'>
+                    <button
+                      className='delete-btn'
+                      onClick={() => {
+                        dispatch(actions.deleteCart(item));
                       }}
                     >
-                      <div className='quantity-check'>
-                        <button className='delete-btn'>-</button>
-                        <div className='cart-quantity'>{item.quantity}</div>
-                        <button className='add-btn'>+</button>
-                      </div>
-                    </TableCell>
-                    <TableCell>$ {item.price}</TableCell>
+                      -
+                    </button>
+                    <div className='cart-quantity'>{item.quantity}</div>
+                    <button
+                      className='add-btn'
+                      onClick={() => {
+                        dispatch(actions.addCart(item));
+                      }}
+                    >
+                      +
+                    </button>
                   </div>
-                ))}
+                </TableCell>
+                <TableCell sx={{ height: '80px', textAlign: 'center' }}>
+                  $ {item.price}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

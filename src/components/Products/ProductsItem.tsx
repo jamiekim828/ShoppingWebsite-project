@@ -150,7 +150,10 @@ export default function ProductsItem({ product }: PropType) {
         <Tooltip title='Add to cart'>
           <IconButton
             aria-label='add to cart'
-            onClick={() => addToCart(product)}
+            onClick={() => {
+              addToCart(product);
+              dispatch(actions.addCart(product));
+            }}
           >
             <AddShoppingCartIcon sx={{ color: 'gray' }} />
           </IconButton>
