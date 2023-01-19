@@ -52,7 +52,7 @@ export default function HomeBottompart({
   const women = productsList.filter((item) => item.category.includes('women'));
 
   return (
-    <div>
+    <div className='home-bottom'>
       <Box
         sx={{
           width: '100%',
@@ -101,7 +101,7 @@ export default function HomeBottompart({
                   <div>
                     {wishList.some((i) => i.id === item.id) ? (
                       <FavoriteIcon
-                        sx={{ zIndex: 2, marginLeft: '5px', cursor: 'pointer' }}
+                        sx={{ zIndex: 1, marginLeft: '5px', cursor: 'pointer' }}
                         onClick={() => {
                           favoriteHandler(item);
                         }}
@@ -135,6 +135,7 @@ export default function HomeBottompart({
         Show us how you wear it
       </p>
       <Button
+        className='add-photo'
         variant='outlined'
         onClick={handleClickOpen}
         sx={{
@@ -156,6 +157,7 @@ export default function HomeBottompart({
         Add your photo
       </Button>
       <Button
+        className='add-photo'
         variant='outlined'
         sx={{
           borderRadius: '30px',

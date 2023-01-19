@@ -11,6 +11,7 @@ import { actions } from '../redux/slice/product';
 import { ProductType } from '../types/type';
 
 export default function HomePage() {
+  // state
   const productsList = useSelector(
     (state: RootState) => state.product.productList
   );
