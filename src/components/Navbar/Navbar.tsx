@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import {useSelector} from 'react-redux'
+import {RootState} from "../../redux/store";
 import {Link} from "react-router-dom";
 import logo from '../Assets/logo.png'
-import {RootState} from "../../redux/store";
-import {useSelector} from "react-redux";
+
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -24,8 +25,9 @@ palette: {
     mode: mode ? 'light' : 'dark'
 }
 })
-const wishList= useSelector((state: RootState)=>state.product.wishList);
-    const cart= useSelector((state: RootState)=>state.product.cart)
+
+    const wishList= useSelector((state:RootState)=> state.product.wishList);
+    const cart= useSelector((state:RootState)=> state.product.cart)
   return (
       <div>
 
@@ -39,26 +41,27 @@ const wishList= useSelector((state: RootState)=>state.product.wishList);
                               <Box sx={{flexGrow: 20}}/>
                               <Box sx={{display: {xs: "none", md: "flex"}}}>
                                   <Link  to="">
-                                          {" "}
-                                          <HomeIcon/>
-                                      </Link>
+                                      {" "}
+                                      <HomeIcon/>
+                                  </Link>
                               </Box>
                               <Box sx={{flexGrow: 1}}/>
                               <Box sx={{display: {xs: "none", md: "flex"}}}>
                                   <Link  to="/wish">
-                                      <Badge badgeContent={wishList.length}>
+                                      <Badge badgeContent={wishList.length} color='error'>
                                           <FavoriteIcon />
                                       </Badge>
+
 
                                   </Link>
                               </Box>
                               <Box sx={{flexGrow: 1}}/>
                               <Box sx={{display: {xs: "none", md: "flex"}}}>
                                   <Link  to="/cart">
-                                      {" "}
-                                      <Badge badgeContent={cart.length}>
-                                          <ShoppingCartIcon/>
-                                      </Badge>
+                                    <Badge badgeContent={cart.length} color='error'>
+                                        <ShoppingCartIcon/>
+                                    </Badge>
+
                                   </Link>
                               </Box>
                               <Box sx={{flexGrow: 1}}/>
