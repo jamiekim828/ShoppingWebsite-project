@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import logo from '../Assets/logo.png'
-import {RootState} from "../../redux/store";
-import {useSelector} from "react-redux";
+
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Badge from '@mui/material/Badge';
+import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import {Switch} from "@mui/material";
 
 
@@ -24,8 +25,7 @@ palette: {
     mode: mode ? 'light' : 'dark'
 }
 })
-const wishList= useSelector((state: RootState)=>state.product.wishList);
-    const cart= useSelector((state: RootState)=>state.product.cart)
+
   return (
       <div>
 
@@ -39,16 +39,14 @@ const wishList= useSelector((state: RootState)=>state.product.wishList);
                               <Box sx={{flexGrow: 20}}/>
                               <Box sx={{display: {xs: "none", md: "flex"}}}>
                                   <Link  to="">
-                                          {" "}
-                                          <HomeIcon/>
-                                      </Link>
+                                      {" "}
+                                      <HomeIcon/>
+                                  </Link>
                               </Box>
                               <Box sx={{flexGrow: 1}}/>
                               <Box sx={{display: {xs: "none", md: "flex"}}}>
                                   <Link  to="/wish">
-                                      <Badge badgeContent={wishList.length}>
-                                          <FavoriteIcon />
-                                      </Badge>
+                                      <FavoriteIcon />
 
                                   </Link>
                               </Box>
@@ -56,9 +54,7 @@ const wishList= useSelector((state: RootState)=>state.product.wishList);
                               <Box sx={{display: {xs: "none", md: "flex"}}}>
                                   <Link  to="/cart">
                                       {" "}
-                                      <Badge badgeContent={cart.length}>
-                                          <ShoppingCartIcon/>
-                                      </Badge>
+                                      <ShoppingCartIcon/>
                                   </Link>
                               </Box>
                               <Box sx={{flexGrow: 1}}/>
@@ -69,6 +65,8 @@ const wishList= useSelector((state: RootState)=>state.product.wishList);
                           </Toolbar>
                       </AppBar>
                   </Box>
+              {/*</Paper>*/}
+
           </ThemeProvider>
       </div>
   )
