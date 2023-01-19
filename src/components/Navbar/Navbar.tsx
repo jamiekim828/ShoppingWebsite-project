@@ -35,7 +35,9 @@ export default function Navbar() {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position='static'>
             <Toolbar>
+            <Link to='/'>
               <img src={logo} alt='logo' height='80px' width='80px' />
+              </Link>
               <Box sx={{ flexGrow: 20 }} />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <Link to='/'>
