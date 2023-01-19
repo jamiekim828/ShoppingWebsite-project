@@ -8,6 +8,10 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 import { ProductType } from '../../types/type';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+import { actions } from '../../redux/slice/product';
+import { useSelect } from '@mui/base';
 
 // row data create function
 function createData(image: string, title: string, id: number, price: number) {
@@ -17,11 +21,14 @@ function createData(image: string, title: string, id: number, price: number) {
 export default function CartTable() {
   // cart
   const cartList = JSON.parse(localStorage.getItem('cart') || '{}');
-
+  const cartFromState = useSelector((state: RootState) => state.product.cart);
+  console.log(cartList, cartFromState);
   // MUI table rows
   const rows = cartList.map((item: ProductType) =>
     createData(item.image, item.title, item.id, item.price)
   );
+
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <div className='tablediv'>
@@ -54,7 +61,12 @@ export default function CartTable() {
                 <TableCell className='cart-title' sx={{ height: '80px' }}>
                   {item.title.slice(0, 25)}
                   ITEM NO. {item.id}
-                  <Button sx={{ width: '100px', color: '#9e9e9e' }}>
+                  <Button
+                    sx={{ width: '100px', color: '#9e9e9e' }}
+                    onClick={() => {
+                      dispatch(actions.removeCart(item));
+                    }}
+                  >
                     Remove
                   </Button>
                 </TableCell>
@@ -65,9 +77,23 @@ export default function CartTable() {
                   }}
                 >
                   <div className='quantity-check'>
-                    <button className='delete-btn'>-</button>
+                    <button
+                      className='delete-btn'
+                      onClick={() => {
+                        dispatch(actions.deleteCart(item));
+                      }}
+                    >
+                      -
+                    </button>
                     <div className='cart-quantity'>{item.quantity}</div>
-                    <button className='add-btn'>+</button>
+                    <button
+                      className='add-btn'
+                      onClick={() => {
+                        dispatch(actions.addCart(item));
+                      }}
+                    >
+                      +
+                    </button>
                   </div>
                 </TableCell>
                 <TableCell sx={{ height: '80px', textAlign: 'center' }}>

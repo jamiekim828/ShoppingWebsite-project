@@ -98,6 +98,13 @@ const productSlice = createSlice({
         state.cart.splice(index, 1);
       }
     },
+    removeCart: (state, action) => {
+      const index = state.cart.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
   },
 });
 
