@@ -7,6 +7,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Rating from '@mui/material/Rating';
 
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,8 +18,14 @@ import { actions } from '../../redux/slice/product';
 type PropType = {
   product: ProductType;
 };
-export default function CountriesItem({ product }: PropType) {
-  // MUI
+export default function ProductsItem({ product }: PropType) {
+  const favoriteState = useSelector(
+    (state: RootState) => state.product.wishList
+  );
+  const favoriteResult = favoriteState.some(
+    (item) => item.title === product.title
+  );
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -33,6 +40,14 @@ export default function CountriesItem({ product }: PropType) {
       return;
     }
     setOpen(false);
+  };
+  const favoriteClickHandler = () => {
+    if (favoriteResult) {
+      dispatch(actions.removeWishList(product.title));
+    } else {
+      dispatch(actions.addWishList(product));
+      handleClick();
+    }
   };
 
   // navigtate
@@ -120,6 +135,7 @@ export default function CountriesItem({ product }: PropType) {
 
       <div className='icons'>
         <Tooltip title='Add favorite'>
+
           <IconButton aria-label='add to favorites' onClick={handleClick}>
             <FavoriteIcon
               sx={
@@ -142,6 +158,17 @@ export default function CountriesItem({ product }: PropType) {
         </Tooltip>
 
         <Tooltip title='More info'>
+
+          <Link to={`/products/${product.id}`}>
+            <Button variant='outlined'>MORE</Button>
+          </Link>
+        </Tooltip>
+        <Snackbar open={open} autoHideDuration={1500} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity='success'
+            sx={{ width: '100%' }}
+
           <Button
             variant='outlined'
             sx={{ height: '30px', width: '80px', backgroundColor: '#fafafa' }}
