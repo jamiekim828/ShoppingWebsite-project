@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {useSelector} from 'react-redux'
+import {RootState} from "../../redux/store";
 import {Link} from "react-router-dom";
 import logo from '../Assets/logo.png'
 
@@ -7,12 +9,10 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Badge from '@mui/material/Badge';
-import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeIcon from '@mui/icons-material/Home';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {Switch} from "@mui/material";
 
 
@@ -26,6 +26,8 @@ palette: {
 }
 })
 
+    const wishList= useSelector((state:RootState)=> state.product.wishList);
+    const cart= useSelector((state:RootState)=> state.product.cart)
   return (
       <div>
 
@@ -46,15 +48,20 @@ palette: {
                               <Box sx={{flexGrow: 1}}/>
                               <Box sx={{display: {xs: "none", md: "flex"}}}>
                                   <Link  to="/wish">
-                                      <FavoriteIcon />
+                                      <Badge badgeContent={wishList.length} color='error'>
+                                          <FavoriteIcon />
+                                      </Badge>
+
 
                                   </Link>
                               </Box>
                               <Box sx={{flexGrow: 1}}/>
                               <Box sx={{display: {xs: "none", md: "flex"}}}>
                                   <Link  to="/cart">
-                                      {" "}
-                                      <ShoppingCartIcon/>
+                                    <Badge badgeContent={cart.length} color='error'>
+                                        <ShoppingCartIcon/>
+                                    </Badge>
+
                                   </Link>
                               </Box>
                               <Box sx={{flexGrow: 1}}/>
@@ -65,8 +72,6 @@ palette: {
                           </Toolbar>
                       </AppBar>
                   </Box>
-              {/*</Paper>*/}
-
           </ThemeProvider>
       </div>
   )
