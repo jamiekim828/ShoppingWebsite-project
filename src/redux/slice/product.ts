@@ -37,11 +37,66 @@ const productSlice = createSlice({
       );
       state.wishList = filter;
     },
-    addCart: (state, action) => {
-      state.cart.push(action.payload);
-    },
     showLoadingToggle: (state, action) => {
       state.showLoading = action.payload;
+    },
+    sortByName: (state, action) => {
+      const sorted = [...action.payload].sort(
+        (a: ProductType, b: ProductType) => {
+          if (a.title < b.title) {
+            return -1;
+          }
+          if (a.title > b.title) {
+            return 1;
+          }
+          return 0;
+        }
+      );
+      state.productList = sorted;
+    },
+    sortByPrice: (state, action) => {
+      const sorted = [...action.payload].sort(
+        (a: ProductType, b: ProductType) => {
+          if (a.price < b.price) {
+            return -1;
+          }
+          if (a.price > b.price) {
+            return 1;
+          }
+          return 0;
+        }
+      );
+      state.productList = sorted;
+    },
+    sortByCategory: (state, action) => {
+      const filter = state.productList.filter(
+        (product) => product.category === action.payload
+      );
+      state.productList = filter;
+    },
+    addCart: (state, action) => {
+      const index = state.cart.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      const newProduct = { ...action.payload, quantity: 1 };
+
+      if (index !== -1) {
+        state.cart[index].quantity += 1;
+      } else {
+        state.cart.push(newProduct);
+      }
+    },
+    deleteCart: (state, action) => {
+      const index = state.cart.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      if (index !== -1) {
+        state.cart[index].quantity -= 1;
+      }
+      if (state.cart[index].quantity === 1) {
+        state.cart.splice(index, 1);
+      }
     },
   },
 });
