@@ -17,7 +17,7 @@ import { actions } from '../../redux/slice/product';
 type PropType = {
   product: ProductType;
 };
-export default function ProductItem({ product }: PropType) {
+export default function CountriesItem({ product }: PropType) {
   // MUI
   const [open, setOpen] = useState(false);
 
